@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://faridjafarlee.github.io/relief-site/sitemap.xml
