@@ -9,6 +9,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://faridjafarlee.github.io/relief-site/for-therapists.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://faridjafarlee.github.io/relief-site/privacy.html</loc>
     <priority>0.3</priority>
   </url>
@@ -50,10 +54,6 @@
   </url>
   <url>
     <loc>https://faridjafarlee.github.io/relief-site/personalization.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://faridjafarlee.github.io/relief-site/for-therapists.html</loc>
     <priority>0.7</priority>
   </url>
 </urlset>
