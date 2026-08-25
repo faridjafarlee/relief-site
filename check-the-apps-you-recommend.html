@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How to check whether the apps you recommend still exist</title>
+<meta name="description" content="A practical method for anyone maintaining a mental health app resource page: how to test every App Store link, find the pages that link a dead app, and decide whether to relink or delete." />
+<link rel="canonical" href="https://faridjafarlee.github.io/relief-site/check-the-apps-you-recommend.html" />
+<meta name="apple-itunes-app" content="app-id=6762535735" />
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Relief" />
+<meta property="og:title" content="How to check whether the apps you recommend still exist" />
+<meta property="og:url" content="https://faridjafarlee.github.io/relief-site/check-the-apps-you-recommend.html" />
+<meta property="og:description" content="A practical method for anyone maintaining a mental health app resource page: test every link, find who links a dead app, and decide whether to relink or delete." />
+<meta property="og:image" content="https://faridjafarlee.github.io/relief-site/og/cbt-apps-still-maintained.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="How to check whether the apps you recommend still exist" />
+<meta name="twitter:image" content="https://faridjafarlee.github.io/relief-site/og/cbt-apps-still-maintained.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "inLanguage": "en",
+  "name": "How to check whether the apps you recommend still exist",
+  "description": "A method for testing every App Store link on a mental health resource page, finding which pages link a withdrawn app, and deciding whether to relink or delete.",
+  "datePublished": "2026-08-26",
+  "dateModified": "2026-08-26",
+  "author": { "@type": "Person", "name": "Farid Jafarli" }
+}
+</script>
+<style>
+  :root { --ink:#1c2620; --muted:#5b6b62; --green:#2f5d4a; --bg:#f6f4ef; --card:#ffffff; --line:#e4e0d7; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.65; }
+  .wrap { max-width:720px; margin:0 auto; padding:56px 24px 80px; }
+  .badge { display:inline-block; font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--green); font-weight:700; text-decoration:none; }
+  h1 { font-size:34px; line-height:1.2; margin:12px 0 10px; }
+  h2 { font-size:21px; margin:0 0 8px; }
+  h3 { font-size:15px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+    margin:22px 0 8px; }
+  .tag { font-size:19px; color:var(--muted); margin:0 0 8px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:24px 26px; margin:20px 0; }
+  .cue { color:var(--muted); }
+  ul { margin:0; padding-left:20px; } li { margin:6px 0; }
+  ol { padding-left:20px; } ol li { margin:10px 0; }
+  a { color:var(--green); }
+  code { background:#eeece5; padding:1px 5px; border-radius:5px; font-size:14px; }
+  pre { background:#eeece5; padding:14px 16px; border-radius:10px; overflow-x:auto;
+    font-size:13.5px; line-height:1.5; }
+  pre code { background:none; padding:0; font-size:13.5px; }
+  footer { color:var(--muted); font-size:14px; margin-top:36px; }
+  table { width:100%; border-collapse:collapse; font-size:15px; }
+  th, td { text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-weight:600; color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:.04em; }
+  .scroll { overflow-x:auto; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="badge" href="./">Relief</a>
+      <h1>How to check whether the apps you recommend still exist</h1>
+      <p class="tag">Written for whoever maintains the resource page &mdash; a counselling centre, a
+        library guide, a charity, a private practice. It takes about twenty minutes and needs no
+        software you do not already have.</p>
+    </header>
+
+    <section class="card">
+      <h2>The problem is that nothing tells you</h2>
+      <p>When an app closes, nobody writes to the pages that recommend it. There is no notification,
+        no redirect, and no obligation on anyone to propagate the news. A page written carefully in
+        2022 quietly becomes wrong in 2025 and looks exactly the same.</p>
+      <p>Worse, the usual safeguards miss it. A broken-link checker tests whether a URL returns a
+        page &mdash; and a withdrawn app&rsquo;s App Store listing very often still returns a page.
+        The failure only appears after somebody installs the app and cannot get in.</p>
+      <p>Three distinct things can go wrong, and they need different fixes:</p>
+      <div class="scroll">
+      <table>
+        <tr><th>What happened</th><th>What the link does</th><th>Right fix</th></tr>
+        <tr><td><strong>Withdrawn</strong> &mdash; pulled from the store</td>
+            <td>404, or redirects to the store front page</td><td>Remove, or replace</td></tr>
+        <tr><td><strong>Moved</strong> &mdash; republished under a new ID</td>
+            <td>Old ID dead, app very much alive</td><td><strong>Relink</strong>, do not delete</td></tr>
+        <tr><td><strong>Closed but listed</strong> &mdash; service ended, listing left up</td>
+            <td>Looks perfectly healthy</td><td>Remove, and say why</td></tr>
+      </table>
+      </div>
+      <p class="cue">The middle row is the one that causes real damage. Deleting a working app because
+        its old link died removes a resource that people needed.</p>
+    </section>
+
+    <section class="card">
+      <h2>Step 1 &mdash; test every link against Apple&rsquo;s own lookup</h2>
+      <p>Every App Store URL contains a numeric ID, the part after <code>id</code>. Apple publishes a
+        free lookup endpoint that needs no key and no account. If it returns
+        <code>"resultCount":0</code>, the listing is not available.</p>
+      <pre><code>curl -s "https://itunes.apple.com/lookup?id=1060691513&amp;country=us"</code></pre>
+      <p>To do a whole page at once, pull the IDs out of it first:</p>
+      <pre><code>curl -s https://example.edu/counseling/apps.html \
+  | grep -oE 'id[0-9]{6,}' | sort -u \
+  | while read i; do
+      n=$(curl -s "https://itunes.apple.com/lookup?${i/id/id=}&amp;country=us" \
+          | grep -o '"trackName":"[^"]*"' | head -1)
+      echo "${i}  ${n:-*** NOT AVAILABLE ***}"
+    done</code></pre>
+      <h3>Two things that will mislead you</h3>
+      <ul>
+        <li><strong>Check more than one storefront.</strong> Availability is per country. An app that
+          returns nothing in <code>country=us</code> may be perfectly alive in <code>gb</code> or
+          <code>de</code>. A single zero is not a conclusion.</li>
+        <li><strong>A single zero can simply be a blip.</strong> The endpoint occasionally returns
+          <code>resultCount:0</code> for an app that is demonstrably on sale. Re-run it before you
+          write anything down.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Step 2 &mdash; check your PDFs, because nothing else does</h2>
+      <p>This is the single most useful thing on this page. Handouts, printable guides and
+        orientation packs are where dead links survive longest, because <strong>no link checker
+        crawls a PDF</strong>, and because a printed copy cannot be corrected at all.</p>
+      <p>In one counselling-centre handout examined for this page, <strong>11 of its 30 App Store
+        links were dead.</strong> The same organisation&rsquo;s website was in far better shape. The
+        PDF had simply never been part of any check.</p>
+      <p>You do not need a PDF library to look. App Store links sit in the raw bytes as
+        <code>/URI</code> entries:</p>
+      <pre><code>curl -s https://example.edu/handout.pdf | strings | grep -oE 'https?://[^ )]*apple[^ )]*'</code></pre>
+    </section>
+
+    <section class="card">
+      <h2>Step 3 &mdash; find every page that links a dead app</h2>
+      <p>Once you know an ID is dead, search for the ID itself, in quotes, in any search engine:</p>
+      <pre><code>"id825099621"</code></pre>
+      <p>This works far better than searching the app&rsquo;s name, and it has no false positives by
+        construction, because nobody writes an App Store ID anywhere except inside a link. One such
+        search returned five separate institutions still linking the same withdrawn app.</p>
+      <p class="cue">If you run a large site, this is also the fastest way to audit yourself: add
+        <code>site:yourdomain.edu</code> to the same query.</p>
+    </section>
+
+    <section class="card">
+      <h2>Step 4 &mdash; relink rather than delete, and mind the deadlines</h2>
+      <p>The tidy reaction is to delete the entry. It is often the wrong one.</p>
+      <ul>
+        <li><strong>If the app moved</strong>, find the current listing by searching the app name in
+          the App Store and confirm the developer matches. Then update the ID. The resource is still
+          good; only the address changed.</li>
+        <li><strong>If the app is closing but has not closed yet</strong>, do not just remove the page.
+          People who wrote things in it may lose them. Leave the entry up briefly with a line telling
+          them how to export, and remove it after the deadline. A user who never sees the notice loses
+          their journal, and quietly deleting the page guarantees they never see it.</li>
+        <li><strong>If the app is gone with no successor</strong>, say so plainly rather than
+          substituting something that looks similar. &ldquo;This app is no longer available&rdquo; is
+          more useful than a replacement nobody vetted.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>What this method cannot tell you</h2>
+      <ul>
+        <li>Whether an app is any <em>good</em>. This checks existence, not quality, evidence base or
+          data handling. Those are separate questions and harder ones.</li>
+        <li>Whether a listing that resolves is still usable. An app can remain in the store while its
+          service is closed to new users, which no automated check will catch. That one needs a human
+          to read the developer&rsquo;s own announcements.</li>
+        <li>Anything about Android. Google Play needs its own pass; the two platforms diverge, and an
+          app can be alive on one and gone from the other.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Who wrote this, and why that matters</h2>
+      <p>I make <a href="https://apps.apple.com/us/app/relief-cbt-reframing-tool/id6762535735">Relief</a>,
+        a CBT thought record for iOS. That is a conflict of interest and it is the reason I started
+        checking these pages at all, so you should know it before you use anything here.</p>
+      <p>The method itself does not care what the answer is, which is why it is worth publishing. It
+        will tell you a competitor of mine is alive just as readily as it tells you one is dead, and
+        several of the checks above exist specifically because I got the answer wrong the first time
+        and had to correct it.</p>
+      <p>If you find an error in this, or you run it and get a result that does not make sense,
+        <a href="mailto:farid.jafarlee@gmail.com?subject=Checking%20app%20links">write to me</a>. I
+        would rather fix it than be quoted saying something wrong.</p>
+    </section>
+
+    <footer>
+      <p><a href="./">Home</a> &middot;
+        <a href="./cbt-apps-still-maintained.html">Which CBT apps still exist</a> &middot;
+        <a href="./youper-shutting-down.html">Youper is shutting down</a> &middot;
+        <a href="./thought-record.html">The thought record</a> &middot;
+        <a href="./press.html">Press</a></p>
+      <p>Relief is a self-help tool and is not a substitute for professional diagnosis or treatment.
+        In a crisis, contact your local emergency number.</p>
+    </footer>
+  </div>
+</body>
+</html>

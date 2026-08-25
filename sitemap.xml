@@ -140,4 +140,10 @@
     <loc>https://faridjafarlee.github.io/relief-site/youper-shutting-down.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://faridjafarlee.github.io/relief-site/check-the-apps-you-recommend.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
