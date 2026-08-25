@@ -194,6 +194,32 @@
     </section>
 
     <section class="card">
+      <h2>The &ldquo;(new)&rdquo; tell</h2>
+      <p>Some publishers do not update an app. They publish a second one beside it and abandon the
+        first, which leaves the old listing&rsquo;s ID alive in every page that ever linked it while
+        all the maintenance happens somewhere else.</p>
+      <p>You can often spot it in the app&rsquo;s own name. Listing the US App Store catalogue of the
+        <strong>Defense Health Agency</strong> on 26 August 2026 returns six apps, and <strong>three
+        of them are named &ldquo;(new)&rdquo;</strong>:</p>
+      <ul>
+        <li><strong>Virtual Hope Box (new)</strong> &mdash; <code>id6477622019</code></li>
+        <li><strong>Dream EZ (new)</strong> &mdash; <code>id6744124763</code></li>
+        <li><strong>Provider Resilience (new)</strong> &mdash; <code>id6758460542</code></li>
+      </ul>
+      <p>Each of those names implies an older listing that pages are still pointing at, and these are
+        among the most widely recommended apps on counselling, veteran and student resource pages.</p>
+      <h3>Check a publisher&rsquo;s whole catalogue in one request</h3>
+      <p>Take the developer ID out of any
+        <code>apps.apple.com/&hellip;/developer/&hellip;/id&hellip;</code> URL and ask the same
+        endpoint for everything they publish:</p>
+      <pre><code>curl -s "https://itunes.apple.com/lookup?id=1264687017&amp;entity=software&amp;limit=60&amp;country=us"</code></pre>
+      <p>If an app on your page is missing from that list, or appears there with
+        &ldquo;(new)&rdquo; appended, your link is almost certainly the abandoned one.</p>
+      <p class="cue">Do this once per publisher rather than once per app. One agency, one request,
+        and every app of theirs on your page is checked at once.</p>
+    </section>
+
+    <section class="card">
       <h2>What this method cannot tell you</h2>
       <ul>
         <li>Whether an app is any <em>good</em>. This checks existence, not quality, evidence base or
