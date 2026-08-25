@@ -80,9 +80,14 @@
         be used by a member of the public who follows the link:</p>
       <ul>
         <li><strong>Woebot</strong> &mdash; Woebot Health retired the consumer app on 30 June 2025 and
-          moved to an enterprise model. The App Store listing still exists, which is what makes this
-          easy to miss, but access now needs a code from a partner organisation. Reported at the time
-          by MobiHealthNews and STAT, and described in Woebot Health&rsquo;s own FAQ.</li>
+          moved to an enterprise model; access now needs a code from a partner organisation. Reported
+          at the time by MobiHealthNews and STAT, and described in Woebot Health&rsquo;s own FAQ.
+          <br />The two platforms have since diverged, which is worth knowing if you maintain a page
+          that links both. <strong>On Android it is simply gone:</strong> on 25 August 2026 both
+          <code>play.google.com/store/apps/details?id=com.woebot</code> and the Woebot Health Inc
+          developer page returned <strong>404</strong>, checked three times, while a control app
+          returned 200 on the same request. <strong>On iOS the listing still exists</strong>, which is
+          exactly what lets a broken recommendation survive a link check.</li>
         <li><strong>Sanvello</strong>, formerly <strong>Pacifica</strong> &mdash; removed from the App
           Store and Google Play in June 2024, and now AbleTo SelfCare+, open to members only.</li>
       </ul>
@@ -94,6 +99,10 @@
       <h2>What is on the store, and when it was last updated</h2>
       <p>Checked <strong>25 August 2026</strong>, United States storefront. The dates are Apple&rsquo;s
         own <em>last updated</em> values, not an opinion about quality.</p>
+      <p><strong>This table is iOS.</strong> Android was not swept, because an iOS bundle identifier is
+        not an Android package name and guessing one produces false negatives &mdash; a guessed package
+        for MindShift returned 404 here, and MindShift is perfectly healthy. The single Android fact
+        below is stated because it was checked directly, not inferred.</p>
       <div class="scroll">
       <table>
         <thead><tr><th>App</th><th>Publisher, as listed</th><th>Last updated</th><th></th></tr></thead>
@@ -111,7 +120,7 @@
         <tr><td>Untangle: CBT Companion</td><td>Resiliens Inc.</td><td class="d">2026-08-01</td><td></td></tr>
         <tr><td>Virtual Hope Box (new)</td><td>Defense Health Agency</td><td class="d">2026-04-22</td><td></td></tr>
         <tr><td>What&rsquo;s Up?</td><td>Jackson Tempra</td><td class="d">2026-04-13</td><td></td></tr>
-        <tr><td>Woebot</td><td>Woebot Labs Inc</td><td class="d">2025-12-17</td><td>Listed, but closed to new consumer sign-ups since June 2025.</td></tr>
+        <tr><td>Woebot</td><td>Woebot Labs Inc</td><td class="d">2025-12-17</td><td>iOS listing present; closed to new consumer sign-ups since June 2025. Gone from Google Play entirely.</td></tr>
         <tr><td>Wysa</td><td>Touchkin eServices</td><td class="d">2026-08-13</td><td></td></tr>
         </tbody>
       </table>
