@@ -59,7 +59,24 @@
 .tr th, .tr td { border:1px solid var(--line); padding:9px 11px; text-align:left; vertical-align:top; }
 .tr th { background:#f0ece3; width:34%; font-weight:600; }
 .scroll { overflow-x:auto; }
-</style>
+
+    /* Printing this page should hand you a usable blank worksheet, not a web page.
+       Resource pages link worksheets people print; a wall of prose that prints
+       across four sheets is not one. */
+    @media print {
+      body { background: #fff; color: #000; }
+      .wrap > header p.tag, .wrap > footer, .badge { display: none; }
+      .card:not(.print-worksheet) { display: none; }
+      .print-worksheet { border: none; box-shadow: none; padding: 0; }
+      .print-worksheet h2, .print-worksheet p { display: none; }
+      .print-worksheet pre {
+        background: #fff !important; border: none !important; padding: 0 !important;
+        font-family: Georgia, 'Times New Roman', serif; font-size: 13pt;
+        line-height: 4.2; white-space: pre-wrap;
+      }
+      .wrap > header h1 { font-size: 18pt; margin-bottom: 24pt; }
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -113,18 +130,18 @@
         possibility open and names an action. That is what makes it hold up tomorrow.</p>
     </section>
 
-    <section class="card">
+    <section class="card print-worksheet">
       <h2>A blank one to copy</h2>
       <p>No download, no email address, nothing to sign up for. Copy these eight lines onto paper or
         into any notes app.</p>
-      <pre style="background:#f0ece3;border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;font-size:14px;line-height:1.8">Situation:
-Automatic thought:
-Distress (0-10):
-Distortion:
-Evidence for:
-Evidence against:
-Balanced thought:
-Distress again (0-10):</pre>
+      <pre style="background:#f0ece3;border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;font-size:14px;line-height:1.8">Situation: ______________________________________________
+Automatic thought: ______________________________________
+Distress (0-10): ____
+Distortion: ____________________________________________
+Evidence for: __________________________________________
+Evidence against: ______________________________________
+Balanced thought: ______________________________________
+Distress again (0-10): ____</pre>
       <p>If you do not know which distortion you are looking at,
         <a href="./distortions.html">the ten of them are explained here</a>.</p>
     </section>
