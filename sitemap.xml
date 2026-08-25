@@ -13,6 +13,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://faridjafarlee.github.io/relief-site/press.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://faridjafarlee.github.io/relief-site/privacy.html</loc>
     <priority>0.3</priority>
   </url>
@@ -55,9 +59,5 @@
   <url>
     <loc>https://faridjafarlee.github.io/relief-site/personalization.html</loc>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://faridjafarlee.github.io/relief-site/press.html</loc>
-    <priority>0.6</priority>
   </url>
 </urlset>
