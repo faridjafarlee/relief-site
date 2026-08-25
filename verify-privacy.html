@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Check what Relief sends — you don't have to take our word for it</title>
+<meta name="description" content="Relief says nothing you write leaves your phone. Here is how to verify that yourself in about a minute, using the App Privacy Report built into iOS." />
+<link rel="canonical" href="https://faridjafarlee.github.io/relief-site/verify-privacy.html" />
+<meta name="apple-itunes-app" content="app-id=6762535735" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Relief" />
+<meta property="og:title" content="Check what Relief sends" />
+<meta property="og:description" content="How to verify the privacy claims yourself, using a tool already on your phone." />
+<meta property="og:url" content="https://faridjafarlee.github.io/relief-site/verify-privacy.html" />
+<meta name="twitter:card" content="summary" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to check what Relief sends from your phone",
+  "description": "Use the App Privacy Report built into iOS, or a proxy, to see every domain Relief contacts.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Turn on App Privacy Report",
+      "text": "Settings > Privacy & Security > App Privacy Report > Turn On App Privacy Report."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Use the app normally",
+      "text": "Write a few reframes over a day or so, so there is activity to record."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Read the report",
+      "text": "Return to App Privacy Report and open Relief to see every domain it has contacted."
+    }
+  ]
+}
+</script>
+<style>
+  :root { --ink:#1c2620; --muted:#5b6b62; --green:#2f5d4a; --bg:#f6f4ef; --card:#ffffff; --line:#e4e0d7; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.65; }
+  .wrap { max-width:720px; margin:0 auto; padding:56px 24px 80px; }
+  .badge { display:inline-block; font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--green); font-weight:700; text-decoration:none; }
+  h1 { font-size:34px; line-height:1.2; margin:12px 0 10px; }
+  h2 { font-size:21px; margin:0 0 8px; }
+  h3 { font-size:15px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+    margin:22px 0 8px; }
+  .tag { font-size:19px; color:var(--muted); margin:0 0 8px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:24px 26px; margin:20px 0; }
+  .quote { font-size:17px; margin:0 0 6px; }
+  .cue { color:var(--muted); }
+  ul { margin:0; padding-left:20px; } li { margin:6px 0; }
+  a { color:var(--green); }
+  .btn { display:inline-block; background:var(--green); color:#fff; text-decoration:none;
+    padding:12px 20px; border-radius:999px; font-weight:600; }
+  nav ul { list-style:none; padding:0; columns:2; }
+  footer { color:var(--muted); font-size:14px; margin-top:36px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="badge" href="./">Relief</a>
+      <h1>Don't take our word for it</h1>
+      <p class="tag">Relief is closed source, so "nothing you write leaves the phone" is a claim you
+        cannot read the code to check. You can check it a different way, in about a minute, with a
+        tool already on your iPhone.</p>
+    </header>
+
+    <section class="card">
+      <h2>The one-minute version</h2>
+      <ol>
+        <li><strong>Settings &rarr; Privacy &amp; Security &rarr; App Privacy Report &rarr; Turn On
+          App Privacy Report.</strong> This is built into iOS. Nothing to install.</li>
+        <li>Use Relief normally for a day — write a few reframes.</li>
+        <li>Go back to App Privacy Report and find Relief. iOS will show you <em>every domain the
+          app has contacted</em>.</li>
+      </ol>
+      <p>That report is produced by iOS, not by us. We cannot influence what it says.</p>
+    </section>
+
+    <section class="card">
+      <h2>What you should see</h2>
+      <p>If you have never opened the paywall and never bought anything, the honest expectation is
+        <strong>no network activity at all</strong>. The app works entirely offline.</p>
+      <p>If you have opened the paywall, restored a purchase, or subscribed, you should see
+        <strong>RevenueCat</strong> domains. RevenueCat handles subscription status so that a
+        purchase keeps working across reinstalls and devices. It receives purchase information and
+        an anonymous, app-generated identifier — no name, no email, and none of your writing.</p>
+      <p>That is the complete list. There is nothing else.</p>
+    </section>
+
+    <section class="card">
+      <h2>What you should not see, and why</h2>
+      <ul>
+        <li><strong>No analytics domain.</strong> The app contains exactly one outbound network call
+          in its entire codebase, for optional analytics, and it is switched off in the shipping
+          build — the configuration it needs is absent, so the code path never runs.</li>
+        <li><strong>No crash-reporting domain.</strong> Same arrangement: the crash reporter only
+          initialises when given a key, and the shipping build is not given one.</li>
+        <li><strong>No update-check domain.</strong> Over-the-air updates are not configured, so the
+          app never phones home to ask whether a new version exists.</li>
+        <li><strong>No push-notification registration.</strong> Reminders are scheduled locally by
+          iOS. There is no push token and no server that could send you anything.</li>
+        <li><strong>No advertising or tracking domains.</strong> There are no ad SDKs in the project.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>If you want to look harder</h2>
+      <p>App Privacy Report is the easy route. If you would rather watch the traffic directly, put
+        the phone behind a proxy — Proxyman, Charles or mitmproxy all work — and use the app. You
+        will see the same thing, in more detail.</p>
+      <p>If you find something on this page to be wrong, please say so:
+        <a href="mailto:farid.jafarlee@gmail.com?subject=Relief%20%E2%80%94%20privacy%20verification">farid.jafarlee@gmail.com</a>.
+        A correction is worth more to this project than the claim was.</p>
+    </section>
+
+    <section class="card">
+      <h2>What this does and does not prove</h2>
+      <p>Watching the network proves what leaves the device. It does not prove what happens on it —
+        for that you would need the source, and Relief is closed source. What can be said is that the
+        entries are encrypted on the device with AES-GCM and the key is held in the iOS keychain, and
+        that there is no server to receive them regardless.</p>
+      <p>Nothing here has been independently audited. It is a description of how the app behaves,
+        offered in a form you can check rather than one you have to believe.</p>
+    </section>
+
+    <footer>
+      <p><a href="./">Home</a> &middot; <a href="./privacy.html">Privacy Policy</a> &middot;
+        <a href="./for-therapists.html">For therapists</a> &middot;
+        <a href="./press.html">Press kit</a></p>
+      <p>Relief is a self-help tool and is not a substitute for professional diagnosis or treatment.</p>
+    </footer>
+  </div>
+</body>
+</html>
