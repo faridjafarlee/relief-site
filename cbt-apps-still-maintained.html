@@ -699,6 +699,34 @@
         avoided is answering <em>&ldquo;we do not know where you are&rdquo;</em> with
         <em>&ldquo;call this American number.&rdquo;</em></p>
 
+      <h3>What the dead app turned out to be</h3>
+      <p>Following the id from the section above produced something worse than one stale entry.</p>
+      <p>The app is <strong>MY3 &mdash; Support Network</strong>, <code>id709651264</code>, a safety-planning
+        tool built around three chosen contacts. It is not an indie project. According to the
+        organisations that list it, MY3 was owned by <strong>Vibrant Emotional Health</strong>, the
+        administrator of the 988 Suicide &amp; Crisis Lifeline. It is recommended by hospital systems,
+        by suicide-prevention bodies, and in consumer round-ups.</p>
+      <p>Checked on 27 August 2026, Apple&rsquo;s lookup returns <strong>zero results in fifteen
+        storefronts</strong> &mdash; us, gb, ca, au, de, jp, ag, sa, in, za, nz, ie, mx, br and ph &mdash;
+        against a control app that returned normally on the identical request. The App Store URL a
+        university publishes for it returns <strong>404</strong>.</p>
+      <p>Two things are <em>not</em> claimed here, because they could not be established.
+        <code>my3app.org</code> returned <strong>503</strong> when checked, which is a server error and
+        not proof of anything &mdash; it may be back tomorrow. And no claim is made about Android,
+        because the package name would have been a guess, and a guessed identifier is exactly the
+        mistake this page keeps documenting.</p>
+      <p><strong>The part that should worry a maintainer</strong> is what happened when the surviving
+        recommendations were checked. Of the pages still listing MY3, a hospital network&rsquo;s
+        safety-planning page and a national suicide-prevention resource database <strong>both return
+        403 to every tool available</strong> &mdash; curl and a fully rendered browser alike. They
+        cannot be audited from outside at all. A consumer round-up from a large technology publisher
+        can be read, but it names its eight apps in plain text with no links, so there is nothing to
+        check mechanically and a name search cannot prove absence either way.</p>
+      <p>So the highest-consequence category of recommendation is also the one that is hardest for
+        anybody outside the institution to verify. <strong>If your organisation publishes crisis or
+        safety-planning app recommendations, you are very likely the only person who can check
+        them.</strong> Nobody is coming to tell you.</p>
+
       <h3>If you maintain a page with crisis numbers on it</h3>
       <p>The check is short, and unlike the app checks above it cannot be automated &mdash; a phone
         number has no status code:</p>
