@@ -529,6 +529,52 @@
         looking costs one request per app.</p>
     </section>
 
+
+    <section class="card">
+      <h2>The links that matter most are the ones nobody audits</h2>
+      <p>Everything above concerns app links. There is a smaller set of links on these pages that
+        carries far more weight and gets checked far less often: <strong>crisis lines.</strong></p>
+      <p>An app entry that 404s is an inconvenience. <strong>A crisis number that has changed, or a
+        helpline link that no longer resolves, fails someone at the worst possible moment</strong> —
+        and it fails silently, because nobody reports a dead link they found while in distress.</p>
+      <p>They are also unusually easy to get wrong. Numbers get reassigned. Services merge. A national
+        short code is meaningless one border away. And unlike an App Store id, <strong>a phone number
+        gives you no error to notice</strong> &mdash; there is no 404 for a line that now belongs to
+        someone else.</p>
+
+      <h3>Checking our own, since this page asks others to check theirs</h3>
+      <p>It would be poor form to publish a page about stale links without auditing the ones in our own
+        app. Verified <strong>26 August 2026</strong>:</p>
+      <ul>
+        <li><strong>988</strong> &mdash; US Suicide &amp; Crisis Lifeline. Correct.</li>
+        <li><strong>Text 741741</strong> &mdash; Crisis Text Line. Correct.</li>
+        <li><strong>1-866-488-7386</strong> &mdash; The Trevor Project. <strong>Checked against their
+          own Get Help page, where it appears eight times.</strong> A number is only verifiable against
+          the organisation that owns it; nothing else counts.</li>
+        <li><strong><code>findahelpline.com</code></strong> &mdash; the international finder, HTTP 200.</li>
+      </ul>
+      <p><strong>Region handling is the part most likely to be wrong, so it is worth stating
+        explicitly.</strong> US short codes are useless outside the US, and a device that cannot report
+        its region is <em>not</em> a US device. Our app treats <em>unknown</em> as its own case: the
+        international finder leads, and any US line shown is labelled as such. The failure mode being
+        avoided is answering <em>&ldquo;we do not know where you are&rdquo;</em> with
+        <em>&ldquo;call this American number.&rdquo;</em></p>
+
+      <h3>If you maintain a page with crisis numbers on it</h3>
+      <p>The check is short, and unlike the app checks above it cannot be automated &mdash; a phone
+        number has no status code:</p>
+      <ul>
+        <li><strong>Verify each number against the owning organisation&rsquo;s own site</strong>, not a
+          directory, not a search result, and not another resource page. Directories inherit errors.</li>
+        <li><strong>Check that region-specific lines are labelled by region.</strong> A US short code
+          listed without qualification is wrong for every reader outside the US.</li>
+        <li><strong>Include an international finder</strong> for the readers your national numbers do
+          not serve.</li>
+      </ul>
+      <p>This is the one section here where <strong>&ldquo;probably still fine&rdquo; is not an
+        acceptable answer</strong>, and where the cost of checking is a few minutes once a year.</p>
+    </section>
+
     <section class="card">
       <h2>Method, and its limits</h2>
       <ul>
