@@ -200,6 +200,47 @@
     </section>
 
     <section class="card">
+      <h2>Apps that were renamed in place</h2>
+      <p>The table above is about links that <em>break</em>. This one is about a link that keeps working
+        while the text around it quietly stops being true &mdash; which is harder to catch, because
+        nothing fails a link check.</p>
+      <p><strong>Pocketcoach is now Stresscoach.</strong> Same App Store ID, same app, new name, and a new
+        company name to match. The bundle identifier is still <code>co.pocketcoach.app</code>, which is
+        what proves the lineage.</p>
+      <div class="scroll">
+      <table>
+        <thead><tr><th>Name in your text</th><th>Listing</th><th>Name on the store now</th><th>Publisher, and last updated</th></tr></thead>
+        <tbody>
+        <tr>
+          <td><strong>Pocketcoach</strong></td>
+          <td class="d"><a href="https://apps.apple.com/ch/app/id1469216793">id1469216793</a> &mdash; unchanged</td>
+          <td><em>Stresscoach &ndash; Sorgen loslassen</em> (ch, de, at)<br /><em>Stresscoach &ndash; Anxiety Helper</em> (gb)</td>
+          <td>Stresscoach GmbH &mdash; v4.0.0, 2026-02-01</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+      <p>If your page says &ldquo;Pocketcoach&rdquo; and links this ID, the link is fine and nothing is
+        broken. A reader who taps it simply lands on an app with a different name, and reasonably concludes
+        they have been sent to the wrong place. The fix is one word in your text, not a new link.</p>
+      <p><strong>Two things here matter more than the single app.</strong></p>
+      <p>The first is that <strong>a store title is not one thing</strong>. The same ID is
+        &ldquo;Sorgen loslassen&rdquo; in Switzerland, Germany and Austria, and &ldquo;Anxiety Helper&rdquo;
+        in the United Kingdom. Checking a name against a store is therefore storefront-dependent, and two
+        people can both be right about what an app is called.</p>
+      <p>The second is a limit of <em>this page</em>, stated because a list that hides its gaps is worse
+        than no list. The table further up was swept on the <strong>United States storefront</strong>, and
+        <strong>Stresscoach is not available in the United States at all</strong> &mdash; the lookup returns
+        nothing there. It is live in ch, de, at and gb. So this app is invisible to the method this page
+        uses, while being actively recommended on European resource pages: it turned up here only because
+        it was a live link in a Swiss consumer magazine&rsquo;s health article.</p>
+      <p>The general rule, to sit beside the one above: <strong>a working link is not a checked link</strong>,
+        and <strong>a US sweep is not a world sweep</strong>. If your readers are not in the United States,
+        check the storefront they actually use.</p>
+    </section>
+
+
+    <section class="card">
       <h2>What could not be confirmed</h2>
       <p><strong>Sintelly</strong>, <strong>Bloom</strong>,
         <strong>Thought Challenger</strong>, <strong>Togetherall</strong>, and the original Thriveport
