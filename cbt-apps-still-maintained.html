@@ -385,6 +385,28 @@
       <p><strong>The scheme is part of the identifier.</strong> Checking <code>http://x</code> tells you
         nothing about <code>https://x</code> when nothing is listening on 443. Check the URL exactly as
         the page writes it &mdash; not a form of it you consider equivalent.</p>
+      <p>The same mistake has now happened to me three times, each at a different layer, and the third
+        one is the tidiest illustration. Auditing a college resource page I recorded
+        <strong>Happy</strong> as gone, because <code>www.happythemovement.com</code> has
+        <strong>no A record at all</strong>. That is true. It is also not the whole hostname:</p>
+      <ul>
+        <li><code>www.happythemovement.com</code> &mdash; no A record. Nothing loads.</li>
+        <li><code>happythemovement.com</code>, without the prefix &mdash; <strong>HTTP 200</strong>,
+          redirecting to <code>frictionlessmentalhealth.com</code>, whose page title is
+          <em>&ldquo;Happy: Frictionless Mental Health&rdquo;</em>. <strong>The company rebranded.</strong></li>
+      </ul>
+      <p>So the app is alive, the fix is a new URL rather than a deletion, and I had written the
+        opposite. The resource page happens to link the <code>www.</code> form, so its link really is
+        broken &mdash; but <em>&ldquo;this is dead&rdquo;</em> and <em>&ldquo;this moved, here is where&rdquo;</em>
+        lead a maintainer to opposite edits.</p>
+      <p><strong>The pattern, stated once for all three:</strong> a scheme, a hostname prefix and an id
+        are all <em>part of the identifier</em>, and none of them can be swapped for something you
+        consider equivalent. <code>http</code> is not <code>https</code>. <code>www.x</code> is not
+        <code>x</code>. A searched id is not the id on the page. Each time, the substitution felt too
+        small to matter, and each time it inverted the answer.</p>
+      <p>The practical form is short: <strong>check the exact string the page publishes &mdash; and
+        when it fails, check the obvious variants before concluding anything, because a failure on one
+        variant is not a failure of the thing.</strong></p>
       <p>The same discipline applies one layer up. Resolving these 21 domains meant first matching each
         app on the page to Apple&rsquo;s record for it, and a first pass that took the top search result
         mapped <strong>Youper to Wysa&rsquo;s listing</strong> and <strong>Relief to an unrelated
