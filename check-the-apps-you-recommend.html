@@ -27,7 +27,7 @@
   "name": "How to check whether the apps you recommend still exist",
   "description": "A method for testing every App Store link on a mental health resource page, finding which pages link a withdrawn app, and deciding whether to relink or delete.",
   "datePublished": "2026-08-26",
-  "dateModified": "2026-08-26",
+  "dateModified": "2026-08-27",
   "author": { "@type": "Person", "name": "Farid Jafarli" }
 }
 </script>
@@ -159,6 +159,63 @@
         <li><strong>If the app is gone with no successor</strong>, say so plainly rather than
           substituting something that looks similar. &ldquo;This app is no longer available&rdquo; is
           more useful than a replacement nobody vetted.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Step 5 &mdash; the other links on the page, which are the ones that hurt</h2>
+      <p>Steps 1 to 4 are about store links. A resource page is mostly <em>not</em> store links: it is
+        charities, crisis directories, safety-plan tools, developer websites. Those fail differently,
+        and worse, because the failures return <strong>200</strong>.</p>
+
+      <h3>Decode the URL before you request it</h3>
+      <p>Take this one seriously, because getting it wrong causes the most damage of anything on this
+        page.</p>
+      <p>An address written in HTML is not the address a browser sends. A URL with two parameters is
+        written in the source with the ampersand escaped:</p>
+      <pre><code>href="https://example.org/page.php?m=article&amp;amp;ID=50966"</code></pre>
+      <p>The browser requests it with a real <code>&amp;</code>. A script that scrapes hrefs and feeds
+        them to <code>curl</code> without decoding requests the literal string, and a site that ignores
+        the malformed parameter will quietly serve you <strong>its homepage with a 200</strong>. Your
+        report then says the link redirects to the site root &mdash; which reads exactly like a page
+        that has been removed.</p>
+      <p>This happened during an audit written up for this site. The link flagged as broken was a
+        university&rsquo;s <strong>safety-planning tool</strong>. Requested correctly, it returns 200
+        and the page is titled &ldquo;My Safety Plan&rdquo;. It works. Acting on the uncaught version
+        would have meant persuading a counselling service to delete a working safety plan on the
+        strength of a report that looked rigorous.</p>
+      <p>So: <strong>decode entities before you request anything</strong>, and when a link appears to
+        fall back to a homepage, open it in a browser before you write it down.</p>
+
+      <h3>A 200 is not an arrival &mdash; compare the URL you got to the one you asked for</h3>
+      <p>The status code tells you a server answered. It does not tell you it answered with the thing
+        you asked for. Two shapes to watch, both real, both found on live institutional pages:</p>
+      <ul>
+        <li><strong>The deep link that lands on a homepage.</strong> A link to a crisis-centre
+          directory returned 200 and dropped silently to the organisation&rsquo;s front page. The
+          directory is not at that address any more. For a crisis resource that is the worst possible
+          failure, because it is invisible and it happens at the worst possible moment.</li>
+        <li><strong>The domain that answers for everything.</strong> When an organisation winds down,
+          its site is often replaced by a single notice served for <em>every</em> path.
+          <code>/resources/</code>, <code>/articles/</code>, a subdomain &mdash; all 200, all the same
+          page. Every link you have to that organisation passes a link check on the day it stops
+          working.</li>
+      </ul>
+      <p>The check costs one flag. Ask curl what it actually reached:</p>
+      <pre><code>curl -sL -o /dev/null -w '%{http_code}  %{url_effective}\n' "$URL"</code></pre>
+      <p>If <code>url_effective</code> is a bare domain and you asked for a path, treat it as a
+        failure whatever the code says.</p>
+
+      <h3>Two smaller ones, from the same sweeps</h3>
+      <ul>
+        <li><strong>The scheme is part of the address.</strong> Two well-known charity apps publish
+          short domains that answer on <code>http</code> and refuse connections on <code>https</code>.
+          Checking one scheme tells you nothing about the other &mdash; and pages usually write
+          <code>https</code>.</li>
+        <li><strong>Check the organisation, not only the app.</strong> A recommendation has two parts:
+          the thing, and the reason to trust the thing. They expire independently. An app can be
+          updated last week while the charity your sentence cites as its warrant has been wound up for
+          months. No store lookup will ever mention it.</li>
       </ul>
     </section>
 
