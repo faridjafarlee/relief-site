@@ -288,14 +288,26 @@
       <h3>What was actually checked</h3>
       <p>Stated as a partial result, because that is what it is:</p>
       <ul>
-        <li><strong>7 of 27</strong> apps confirmed present on Google Play by taking the publisher&rsquo;s
+        <li><strong>9 of 27</strong> apps confirmed present on Google Play by taking the publisher&rsquo;s
           own declared package and then <em>verifying the listing&rsquo;s name matched the app</em>:
-          Clarity, Daylio, FreeCBT, Reflectly, Rootd, Untangle and 7 Cups.</li>
+          Clarity, Daylio, FreeCBT, Reflectly, Rootd, Untangle, 7 Cups, and &mdash; added
+          <strong>26 August</strong> after widening the search beyond publishers&rsquo; home pages to
+          their download pages &mdash; <strong>Moodfit</strong> (<code>com.robleridge.Moodfit</code>) and
+          <strong>SuperBetter</strong> (<code>com.superbetter.paid</code>).</li>
         <li><strong>Woebot is genuinely gone</strong> from Play &mdash; <code>com.woebot</code> returns a
           real 404, with a control package returning 200 on the same request.</li>
-        <li><strong>The remaining 19 are unchecked.</strong> Their publishers do not link Play from the
-          page Apple lists as their website, and I will not guess a package for the reason above.</li>
+        <li><strong>The remaining 17 are unchecked.</strong> Their publishers do not link Play from any
+          page found on their own site, and I will not guess a package for the reason above.</li>
       </ul>
+      <p><strong>A third false positive, and a new shape of one.</strong> The same widened search
+        offered <code>app.monkeytaps.moodlight</code> for <em>I am &ndash; Daily Affirmations</em>. The
+        package resolves, returns 200, and belongs to <strong>the correct publisher</strong>. It is
+        still wrong: the listing is <em>&ldquo;Moodlight &ndash; Daily Mood Tracker&rdquo;</em>, a
+        <strong>different app by the same company</strong>.</p>
+      <p>So <em>reading the link from the vendor&rsquo;s own site</em> &mdash; the very fix for
+        guessing &mdash; has its own failure mode: <strong>a publisher with several apps may promote a
+        different one of theirs on the page you happen to read.</strong> Right publisher, right site,
+        right link, wrong app. Only the name check separates them.</p>
       <p>The verification step is the whole method. Resolving a package is not the check &mdash;
         <strong>confirming that the listing you reached is the app you meant is the check.</strong>
         Without it this sweep would have published a wrong row about its own author&rsquo;s app.</p>
