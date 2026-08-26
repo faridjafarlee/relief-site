@@ -292,6 +292,39 @@
     </section>
 
     <section class="card">
+      <h2>Step 5 &mdash; check the developer&rsquo;s website, not just the store link</h2>
+      <p>Steps 1 to 4 check one link. Most resource pages carry a second one &mdash; the
+        developer&rsquo;s own site &mdash; and it fails in ways the store never shows you. Apple
+        publishes that address as <code>sellerUrl</code>, which is also what the
+        <em>Developer Website</em> button on the listing uses, so it comes out of the same lookup you
+        already ran:</p>
+      <pre><code>curl -s "https://itunes.apple.com/lookup?id=1019230398&amp;country=us" \
+  | grep -o '"sellerUrl":"[^"]*"'</code></pre>
+      <p>Then fetch <strong>that exact address</strong> and look at where you land. Three failures show
+        up here and nowhere else:</p>
+      <ul>
+        <li><strong>The 200 that is the wrong company.</strong> The ID above is Moodnotes, whose listed
+          site <code>thriveport.com</code> redirects to <code>bendingspoons.com</code> &mdash; a
+          corporate homepage that does not mention the app anywhere. Nothing is broken. The destination
+          has simply stopped being about the product, and no link checker will ever tell you.</li>
+        <li><strong>The domain that is held but dark.</strong> A domain can keep its nameservers and
+          serve nothing at all. That is neither alive nor expired, and it is indistinguishable from a
+          network problem at your end unless you resolve DNS separately from the fetch.</li>
+        <li><strong>HTTPS refused while HTTP works.</strong> Your browser quietly falls back and the
+          site looks fine; a link to the <code>https://</code> form does not open. Check both schemes
+          explicitly &mdash; <code>http://x</code> tells you nothing about <code>https://x</code> when
+          nothing is listening on port 443.</li>
+      </ul>
+      <p>Two cautions, both learned the hard way while compiling the list. <strong>A 403 is not a dead
+        site</strong> &mdash; it is the site refusing your script, and it belongs in your notes as
+        <em>unknown</em> rather than broken. And <strong>a status code is a moment, not a fact</strong>:
+        on this sweep one perfectly healthy site returned <strong>504</strong> on the first pass and
+        <strong>200</strong> twenty minutes later. Re-check anything you are about to delete over.</p>
+      <p class="cue">Worked results for every app on the list, including which sites fail and which only
+        look like they do, are on <a href="./cbt-apps-still-maintained.html">the checked list</a>.</p>
+    </section>
+
+    <section class="card">
       <h2>A worked example that trips every trap at once</h2>
       <p><strong>Virtual Hope Box</strong> is a coping-skills app for service members and veterans,
         published by the US Defense Health Agency. It appears on a great many institutional resource
