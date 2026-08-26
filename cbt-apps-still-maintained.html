@@ -339,7 +339,7 @@
         The equivalent question is <strong>does the developer&rsquo;s site still exist, and does it still
         serve this product?</strong> So that sweep was run against every developer website Apple lists
         for the apps in the table above &mdash; 21 distinct domains. Seventeen resolve correctly. The
-        other four fail in three different ways, and none of the three is a dead link. A fourth failure type is described below; it was found on a resource page elsewhere rather than in this table, and is included because it is the one a maintainer is least equipped to spot.</p>
+        other four fail in three different ways, and none of the three is a dead link. Two further failure types are described below. Neither was found in this table &mdash; both came from auditing resource pages elsewhere &mdash; and they are included because they are the two a maintainer is least equipped to spot.</p>
 
       <h3>1. The domain answers on HTTP and refuses HTTPS</h3>
       <p><code>calmharm.co.uk</code> and <code>clearfear.co.uk</code> &mdash; the short domains for two
@@ -399,6 +399,51 @@
         &mdash; it is a precondition for being acquired</strong>, and an acquirer has no reason to keep
         paying for a domain it has stopped marketing. A list of recommendations decays fastest exactly
         where it was most confident.</p>
+
+      <h3>5. The domain lapsed, and somebody else re-registered it</h3>
+      <p><em>Also not one of the 21 domains above &mdash; this came from auditing a 2020 article on a
+        major education publisher. It is the only failure on this page where the broken link looks
+        <strong>healthier</strong> than a working one.</em></p>
+      <p>The article recommends an app called <strong>Atlas</strong> and links it twice: once to the
+        App Store, once to <code>www.atlasmh.com/schools</code> for the offer being described.</p>
+      <ul>
+        <li>The store link fails loudly. Apple&rsquo;s lookup API returns <strong>zero results</strong>
+          for <code>id1423178843</code> in the US, Canadian, UK and Australian storefronts, and the
+          page 404s. A link checker catches this one.</li>
+        <li>The website link returns <strong>200</strong>. It redirects to the domain&rsquo;s front
+          page, which today publishes articles about barter exchanges and gift ideas, arranged under
+          mental-health-sounding category headings. No checker catches this one, because by every
+          mechanical measure there is nothing wrong with it.</li>
+      </ul>
+      <p>Two facts establish what happened, and both are checkable in seconds. The domain&rsquo;s
+        <strong>WHOIS creation date is 21 November 2024</strong> &mdash; more than four years after the
+        article was published. The Internet Archive&rsquo;s May 2020 capture of the same domain is
+        titled simply <em>&ldquo;Atlas&rdquo;</em>. The registration lapsed, and someone else picked it
+        up.</p>
+      <p><strong>Why this is the worst of the five.</strong> Cases 1 to 4 all produce a
+        <em>symptom</em>: a refused connection, a stranger&rsquo;s homepage, a redirect, a parking page.
+        Something looks wrong to anyone who clicks. Here there is no symptom at all. The link is 200,
+        there is no certificate warning, no redirect chain worth noticing, and the destination carries
+        health-adjacent category names. A maintainer running a link checker over their page gets a
+        clean report. A reader following the link from a mental-health article arrives somewhere with
+        no relationship to the sentence that sent them.</p>
+      <p><strong>The test that finds it costs one command.</strong> Compare the domain&rsquo;s
+        registration date against the date the recommendation was written:</p>
+      <pre><code>whois atlasmh.com | grep -i "creation date"
+#   Creation Date: 2024-11-21T21:04:58Z</code></pre>
+      <p>A creation date <em>later</em> than the page that links it means the domain in the link is not
+        the domain the author linked to. It is not proof of anything sinister &mdash; registrations
+        lapse for ordinary reasons &mdash; but it is a positive signal that the thing on the other end
+        changed hands, and it is the only cheap one available, because everything else about the link
+        still looks fine. It is worth running on any recommendation more than about three years old.</p>
+      <p>Two milder variants turned up in the same article and generalise beyond it. A link to
+        <code>duo.google.com</code> still returns 200, but redirects to the Google <em>Meet</em>
+        product page &mdash; right company, right redirect, and a product name in the article that no
+        longer exists. And a link to a school district&rsquo;s resource site returns 200 while
+        redirecting to a Google <strong>sign-in screen</strong>: a 200 that no reader of a public
+        article can actually read. In both cases the status code is 200 and the page is not what the
+        sentence promises, which is the same lesson as the section above, arriving from a different
+        direction: <strong>a status code describes a response, not a destination.</strong></p>
 
       <h3>The mistake that produced this section</h3>
       <p>Worth stating plainly, because it is the most useful thing here. On first pass I checked
@@ -525,7 +570,7 @@
       <p>Everything above is a catalogue of things that go wrong, because things going wrong are what
         produce findings. That gives a misleading impression, and it is worth correcting directly:
         <strong>plenty of these pages are perfectly fine.</strong></p>
-      <p>Some resource pages checked link-by-link during this work, with the counts as measured:</p>
+      <p>Some pages checked link-by-link during this work, with the counts as measured:</p>
       <ul>
         <li><strong>A city crisis service&rsquo;s app library</strong> &mdash; 26 store links,
           <strong>11 dead</strong>.</li>
@@ -539,6 +584,10 @@
           healthy</strong>.</li>
         <li><strong>An academic depression centre&rsquo;s toolkit</strong> &mdash; 28 links,
           <strong>none dead</strong>. Several redirects, all resolving to live successors.</li>
+        <li><strong>A national education publisher&rsquo;s 2020 feature</strong> &mdash; 26 outbound
+          links, <strong>2 outright dead</strong> (a store listing and a PDF), plus the re-registered
+          domain described in case 5. Three more could not be checked at all, because the publications
+          they point to refuse automated requests.</li>
       </ul>
       <p><strong>That is a small and deliberately unrepresentative sample</strong> &mdash; pages were
         picked because something suggested they might be stale, so the failure rate here says nothing
@@ -546,7 +595,9 @@
       <p>What it does show is the shape of the problem. <strong>Breakage is not universal and it is not
         rare; it is unpredictable.</strong> Two pages of similar age, from similar institutions, can
         differ completely &mdash; and nothing visible from the outside distinguishes them. The page
-        that turned out to have eleven dead links did not look worse than the one with none.</p>
+        that turned out to have eleven dead links did not look worse than the one with none. Nor does
+        institutional weight help: the entry above with the hardest fault to detect belongs to the
+        best-resourced publisher on the list.</p>
       <p><strong>That is the actual argument for checking.</strong> Not that these pages rot &mdash;
         most of the ones here did not &mdash; but that you cannot tell which have without looking, and
         looking costs one request per app.</p>
@@ -614,6 +665,12 @@
           redirects, over both <code>http</code> and <code>https</code>, for every developer site Apple
           lists for these apps. A status code alone was not treated as an answer: two healthy domains
           and two failing ones returned the identical transport error, and only DNS separated them.</li>
+        <li>Case 5 rests on two records rather than a fetch: the domain&rsquo;s WHOIS creation date,
+          and the Internet Archive&rsquo;s dated capture of the same domain. Both are quoted above so
+          they can be re-run. WHOIS creation dates are reset by a lapse-and-re-registration but not by
+          an ordinary transfer, so a date later than the linking page is evidence of a handover and not
+          of the buyer&rsquo;s intent &mdash; the page says what is served there now and leaves it at
+          that.</li>
         <li>This is a snapshot, and it will go stale &mdash; which is the problem it describes. The
           check date sits above the table for that reason.</li>
       </ul>
