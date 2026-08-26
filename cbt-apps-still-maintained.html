@@ -316,7 +316,7 @@
         The equivalent question is <strong>does the developer&rsquo;s site still exist, and does it still
         serve this product?</strong> So that sweep was run against every developer website Apple lists
         for the apps in the table above &mdash; 21 distinct domains. Seventeen resolve correctly. The
-        other four fail in three different ways, and none of the three is a dead link.</p>
+        other four fail in three different ways, and none of the three is a dead link. A fourth failure type is described below; it was found on a resource page elsewhere rather than in this table, and is included because it is the one a maintainer is least equipped to spot.</p>
 
       <h3>1. The domain answers on HTTP and refuses HTTPS</h3>
       <p><code>calmharm.co.uk</code> and <code>clearfear.co.uk</code> &mdash; the short domains for two
@@ -347,6 +347,35 @@
       <p><code>wysa.io</code> now redirects to <code>wysa.com</code>. Benign, and included only so the
         three are not confused with one another: a moved domain, a cross-brand redirect and a
         protocol failure look identical in a status column and need different fixes.</p>
+
+
+      <h3>4. The product was acquired, and the name it was recommended under was let go</h3>
+      <p><em>Not one of the 21 domains above &mdash; this came from auditing a US college resource
+        page that still recommends Shine. It is included because it is the failure a link check is
+        least able to help with.</em></p>
+      <p><strong>Shine</strong> is the clearest case, and the hardest for a maintainer to reason
+        about. <code>theshineapp.com</code> behaves like the domains in case 1 &mdash; nothing on port
+        443 for the apex, <code>www.</code> or the <code>advice.</code> subdomain &mdash; but over
+        <code>http</code> it does not reach the product either. It reaches a
+        <strong>registrar parking page</strong> that reads <em>&ldquo;theshineapp.com is
+        unavailable&rdquo;</em>. The domain has lapsed.</p>
+      <p>The app itself did not fail. <strong><code>headspace.com/shine</code> returns 200 and is
+        titled &ldquo;Shine X Headspace&rdquo;</strong> &mdash; Headspace hosts the product on its own
+        domain. Press coverage dated 8&ndash;9 September 2022 reports Headspace Health&rsquo;s
+        acquisition of Shine; that reporting is secondary and is why the date is attributed rather
+        than asserted, but the live Headspace page is checkable now and is the part that matters to a
+        maintainer.</p>
+      <p><strong>Why this is its own category.</strong> In cases 1 to 3 the fix is mechanical &mdash;
+        add a certificate, change a URL, note a new publisher. Here <em>the entry itself is wrong</em>.
+        A page recommending &ldquo;Shine&rdquo; and linking <code>theshineapp.com</code> is naming a
+        product that no longer exists under that name, at a domain somebody else may register next.
+        Deleting the row loses a resource that is still available; leaving it sends readers nowhere.
+        The honest edit is to say what happened.</p>
+      <p>It is also the sub-type most likely to hit <em>good</em> apps. Shine was an Apple
+        <em>Best of 2020</em> pick. <strong>Being well-funded and well-reviewed is not protection
+        &mdash; it is a precondition for being acquired</strong>, and an acquirer has no reason to keep
+        paying for a domain it has stopped marketing. A list of recommendations decays fastest exactly
+        where it was most confident.</p>
 
       <h3>The mistake that produced this section</h3>
       <p>Worth stating plainly, because it is the most useful thing here. On first pass I checked
