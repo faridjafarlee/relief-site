@@ -303,6 +303,66 @@
 
 
 
+
+    <section class="card">
+      <h2>The other half of a link: the developer&rsquo;s own website</h2>
+      <p>Everything above checks a <em>store</em> link. That turns out to cover only half the problem,
+        because a great many resource pages <strong>never link the store at all</strong> &mdash; they link
+        the developer&rsquo;s website instead. Spanish and Italian round-ups do this almost universally:
+        of four Italian mental-health round-ups checked on 26 August, the two that loaded carried
+        <strong>zero App Store links between them</strong>, and one of them linked ten developer
+        homepages in their place.</p>
+      <p>On those pages the question &ldquo;does the App Store link still resolve?&rdquo; has no input.
+        The equivalent question is <strong>does the developer&rsquo;s site still exist, and does it still
+        serve this product?</strong> So that sweep was run against every developer website Apple lists
+        for the apps in the table above &mdash; 21 distinct domains. Seventeen resolve correctly. The
+        other four fail in three different ways, and none of the three is a dead link.</p>
+
+      <h3>1. The domain answers on HTTP and refuses HTTPS</h3>
+      <p><code>calmharm.co.uk</code> and <code>clearfear.co.uk</code> &mdash; the short domains for two
+        UK charity apps &mdash; <strong>accept no connections on port 443 at all</strong>. The exact
+        error is <code>Failed to connect to calmharm.co.uk port 443</code>. That is not an expired
+        certificate: an expired certificate still completes the connection and produces a warning.
+        Nothing is listening.</p>
+      <p>Port 80 works perfectly and redirects to <code>calmharm.stem4.org.uk</code> and
+        <code>clearfear.stem4.org.uk</code>, both healthy. <strong>That asymmetry is what makes it
+        invisible.</strong> Anything that tries the plain <code>http://</code> form sees a clean
+        redirect and moves on.</p>
+      <p>Two consequences. First, <strong>Apple&rsquo;s own record for Calm Harm
+        (<code>id961611581</code>, Stem4) gives the developer website as
+        <code>https://calmharm.co.uk/</code></strong> &mdash; so the Developer Website link on that
+        app&rsquo;s App Store page does not connect. Second, any page linking the <code>https://</code>
+        form &mdash; now the default habit, and what most editors auto-complete to &mdash; is sending
+        readers to a connection failure, with no fallback for browsers in HTTPS-only mode. This was
+        reported to the charity on 26 August; it is a setting at their domain host, not a fault in
+        either app.</p>
+
+      <h3>2. The link works and lands on somebody else&rsquo;s homepage</h3>
+      <p><code>thriveport.com</code>, listed as the developer site for <strong>Moodnotes</strong>, now
+        redirects to <strong><code>bendingspoons.com</code></strong> &mdash; a corporate homepage with
+        no Moodnotes anywhere on it. <strong>HTTP 200, real page, wrong product.</strong> A link checker
+        reports this as healthy, because by every mechanical measure it is.</p>
+
+      <h3>3. The domain simply moved</h3>
+      <p><code>wysa.io</code> now redirects to <code>wysa.com</code>. Benign, and included only so the
+        three are not confused with one another: a moved domain, a cross-brand redirect and a
+        protocol failure look identical in a status column and need different fixes.</p>
+
+      <h3>The mistake that produced this section</h3>
+      <p>Worth stating plainly, because it is the most useful thing here. On first pass I checked
+        <code>http://calmharm.co.uk</code>, saw the clean redirect, and <strong>told a publisher their
+        two links were fine and to leave them alone.</strong> Their page linked the
+        <code>https://</code> form. I had to write back within the hour and correct it.</p>
+      <p><strong>The scheme is part of the identifier.</strong> Checking <code>http://x</code> tells you
+        nothing about <code>https://x</code> when nothing is listening on 443. Check the URL exactly as
+        the page writes it &mdash; not a form of it you consider equivalent.</p>
+      <p>The same discipline applies one layer up. Resolving these 21 domains meant first matching each
+        app on the page to Apple&rsquo;s record for it, and a first pass that took the top search result
+        mapped <strong>Youper to Wysa&rsquo;s listing</strong> and <strong>Relief to an unrelated
+        app</strong>. Requiring Apple&rsquo;s returned publisher to match the publisher claimed here
+        fixed it: <strong>26 of 29 verified, and 3 left unmatched rather than guessed.</strong></p>
+    </section>
+
     <section class="card">
       <h2>What could not be confirmed</h2>
       <p><strong>Sintelly</strong>, <strong>Bloom</strong>,
@@ -328,7 +388,12 @@
           otherwise have shipped.</li>
         <li>The two withdrawals are the only claims resting on anything other than the store, and both
           are supported by contemporaneous reporting and by the companies&rsquo; own pages.</li>
-        <li>One storefront. Availability differs by country.</li>
+        <li>One storefront for the table. Availability differs by country; the five-storefront check
+          and its result are described above.</li>
+        <li>The developer-website sweep (26 August 2026) checked DNS resolution and the final URL after
+          redirects, over both <code>http</code> and <code>https</code>, for every developer site Apple
+          lists for these apps. A status code alone was not treated as an answer: two healthy domains
+          and two failing ones returned the identical transport error, and only DNS separated them.</li>
         <li>This is a snapshot, and it will go stale &mdash; which is the problem it describes. The
           check date sits above the table for that reason.</li>
       </ul>

@@ -1,0 +1,16 @@
+---
+description: Keep Obsidian knowledge in sync with code changes
+globs: ["**/*"]
+alwaysApply: true
+---
+Maintain project knowledge in Obsidian at:
+`/Users/faridjafarli/GitHub/obsidian/App development/Projects/relief-site`
+
+For meaningful code changes, always update:
+- `02-Architecture.md` for architecture/data-flow changes
+- `03-File-Structure.md` when modules/files change
+- `04-Functions-Methods.md` when public methods/functions/types change
+- `05-ADR.md` for major decisions/tradeoffs
+- `06-Changelog.md` with concise "why + what changed"
+
+Treat documentation update as part of done criteria.
