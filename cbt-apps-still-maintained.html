@@ -392,6 +392,39 @@
         fixed it: <strong>26 of 29 verified, and 3 left unmatched rather than guessed.</strong></p>
     </section>
 
+
+    <section class="card">
+      <h2>Searching for an app is not checking that it exists</h2>
+      <p>This is the one worth knowing even if you read nothing else here, because
+        <strong>searching is how most people verify a recommendation</strong> &mdash; and on a dead app
+        it fails without looking like failure.</p>
+      <p><strong>Therapeer</strong>, a peer-support app, closed. Its own site says so: every path on
+        <code>therapeer.app</code> now redirects to a farewell page reading <em>&ldquo;we have made the
+        difficult decision to close Therapeer.&rdquo;</em> Both stores agree &mdash; Apple&rsquo;s
+        lookup on <code>id1463843436</code> returns <strong>nothing</strong> in the US or Canadian
+        storefronts, and the Play package <code>app.therapeer</code> returns <strong>404</strong>.</p>
+      <p>A web search for it, run on <strong>26 August 2026</strong>, returned both store pages as
+        ordinary results, with titles and descriptions:</p>
+      <ul>
+        <li><code>apps.apple.com/ca/app/therapeer-peer-support-groups/id1463843436</code> &mdash;
+          <strong>404</strong></li>
+        <li><code>play.google.com/store/apps/details?id=app.therapeer</code> &mdash;
+          <strong>404</strong></li>
+      </ul>
+      <p><strong>The index outlives the listing.</strong> A search result is a memory of a page, not a
+        check that the page is still there, and nothing in the result says which one you are looking
+        at. Someone updating a resource page, seeing a confident result with a real title and a real
+        store URL, has every reason to believe the app is fine.</p>
+      <p>This is a large part of the answer to <em>why do so many resource pages recommend apps that
+        no longer exist?</em> It is not carelessness. <strong>The verification method most people
+        reach for is the one that cannot detect this failure</strong>, and it stays wrong for as long
+        as the index takes to catch up &mdash; which, for a low-traffic store page, can be a long time.</p>
+      <p>The check that does work costs one request: <strong>open the store URL and read the status
+        code</strong>, or query Apple&rsquo;s lookup API by id and read <code>resultCount</code>. Both
+        are linked in the method note below. Neither can be satisfied by a page that no longer
+        exists.</p>
+    </section>
+
     <section class="card">
       <h2>What could not be confirmed</h2>
       <p><strong>Sintelly</strong>, <strong>Bloom</strong>,
