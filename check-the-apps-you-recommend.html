@@ -494,6 +494,61 @@ $ curl -sL -o /dev/null -w "%{http_code}\n" https://www.projetodraft.com/naoexis
         people's pages to that standard, the address you write to belongs inside it.</p>
     </section>
 
+    <section>
+      <h2>Step 8 &mdash; the app that still exists, and still cannot be had</h2>
+      <p>Steps 1 to 7 catch two failures: the app was <em>deleted</em>, or the app was
+        <em>renamed</em>. There is a third, it is the hardest of the three to see, and I only found
+        it because I audited a list where every automated check passed.</p>
+      <p>An app converts from something you download to something your employer gives you. The
+        company still exists. The store listing still exists. The link still resolves. The lookup
+        still returns <code>resultCount 1</code>. The publisher is unchanged and the version is
+        recent. <strong>And a reader who follows your recommendation still cannot use it.</strong></p>
+
+      <h3>Two of them on one list</h3>
+      <p>A 2021 list of twenty apps for first responders, credited to a named clinician at a major
+        hospital, still carries both of these.</p>
+      <p><strong>Woebot.</strong> The iOS listing is live &mdash; id <code>1305375832</code>,
+        version 6.6.1, updated 17 December 2025. Everything a checker looks at is healthy. The App
+        Store description opens like this:</p>
+      <pre><code>Please note to download you&rsquo;ll need an access code from your provider,
+employer or other Woebot Health partner. If you do not have an access
+code, you will not be able to use the app.</code></pre>
+      <p>Woebot Health retired the direct-to-consumer app on 30 June 2025. On Google Play,
+        <code>com.woebot</code> returns 404 while a control package returns 200 in the same run.</p>
+      <p><strong>Happify.</strong> Renamed in place &mdash; the app is now
+        <em>Dario Mind (Twill)</em>, id <code>1593202787</code>, still published by Happify, Inc.,
+        updated 1 July 2026. So Step 5's rename check finds it. What the rename check does not tell
+        you is where the vendor's own front door now goes:</p>
+      <pre><code>$ curl -sL -o /dev/null -w "%{url_effective}\n" https://www.happify.com/
+https://happify.dariomind.com/?access_code=happify</code></pre>
+      <p>An access code, in the URL, on the homepage.</p>
+
+      <h3>Why nothing catches this</h3>
+      <p>Every signal a link checker or a store lookup can read is positive. There is no 404, no
+        <code>resultCount 0</code>, no publisher change, no stale version date. The only place the
+        truth is written down is <strong>the prose of the store description</strong>, which is
+        exactly the field that automated tools skip and human reviewers skim.</p>
+
+      <h3>What to actually do</h3>
+      <p>Read the first two hundred characters of the description. The lookup API already hands them
+        to you, so this costs one command per app:</p>
+      <pre><code>curl -s "https://itunes.apple.com/lookup?id=1305375832" \
+  | python3 -c "import sys,json; print(json.load(sys.stdin)['results'][0]['description'][:300])"</code></pre>
+      <p>Look for <em>access code</em>, <em>through your employer</em>, <em>provided by your health
+        plan</em>, <em>ask your provider</em>, <em>benefit</em>, <em>eligibility</em>. Then follow
+        the vendor's homepage with <code>-L</code> and see where it lands, which is the same habit
+        Step 6 asks for and catches the Happify case in one line.</p>
+      <p>And when you find one, <strong>the fix is not deletion.</strong> The app is real and it may
+        be genuinely available to some of your readers. Write down who can get it: &ldquo;available
+        through participating employers and health plans&rdquo; is a true, short, useful sentence,
+        and it is the difference between a recommendation and a dead end.</p>
+      <p>The general form is worth stating plainly, because it now has three instances rather than
+        one. <strong>A link that resolves is not a promise that a person can get in.</strong> Steps
+        1 to 5 test whether the thing exists; Step 6 tests what the page around it is selling;
+        Step 7 tests whether you can reach the people responsible. This one tests something none of
+        those do &mdash; whether the door is open to your reader specifically.</p>
+    </section>
+
     <footer>
       <p><a href="./">Home</a> &middot;
         <a href="./cbt-apps-still-maintained.html">Which CBT apps still exist</a> &middot;
