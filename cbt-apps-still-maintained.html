@@ -827,6 +827,71 @@
     </section>
 
     <section class="card">
+      <h2>The IDs, so you can check your own page in one pass</h2>
+      <p>Everything above is narrative. This is the part you can actually use: the App Store IDs that
+        have come up dead while auditing other people&rsquo;s pages. <strong>Search your own page for
+        these numbers.</strong> You do not need my name for an app &mdash; you have your own label
+        sitting next to the ID.</p>
+      <p>All checked <strong>27 August 2026</strong>. Each returns <em>no result</em> from Apple&rsquo;s
+        lookup API in <strong>five storefronts</strong> &mdash; us, gb, ca, au and ag &mdash; on requests
+        where a control app returned normally. Twenty-seven of them:</p>
+      <div class="scroll">
+      <table>
+        <thead><tr><th>ID</th><th>What it was, where I saw it</th><th>Replace with</th></tr></thead>
+        <tbody>
+        <tr><td class="d">709651264</td><td><strong>MY3 &mdash; Support Network.</strong> Suicide
+          safety planning. Found on three institutional pages, twice under a crisis heading.</td>
+          <td><strong>Nothing.</strong> Searching &ldquo;My3&rdquo; returns unrelated telecoms apps.</td></tr>
+        <tr><td class="d">666767947</td><td><strong>SAM &mdash; Self-Help for Anxiety Management.</strong>
+          Three institutions.</td><td>None found.</td></tr>
+        <tr><td class="d">730601963</td><td><strong>Happify.</strong> Two institutions.</td>
+          <td><code>1593202787</code> &mdash; Dario Mind (Twill), same publisher.</td></tr>
+        <tr><td class="d">585429140</td><td><strong>A Friend Asks</strong>, the old listing.</td>
+          <td><code>1559476389</code> &mdash; same app, The Jason Foundation.</td></tr>
+        <tr><td class="d">922968861</td><td><strong>Sanvello.</strong></td>
+          <td>Now AbleTo SelfCare+, members only. Not a public replacement.</td></tr>
+        <tr><td class="d">778848692</td><td><strong>Stop, Breathe &amp; Think.</strong> Gone from both
+          stores; its website is a placeholder.</td><td>None found.</td></tr>
+        <tr><td class="d">1423178843</td><td><strong>Atlas &mdash; Life&rsquo;s Journal.</strong> Its
+          domain was re-registered; see case 5.</td><td>None. Do not follow the old website link.</td></tr>
+        <tr><td class="d">1300758165</td><td><strong>LetsTalk.</strong></td><td>None found.</td></tr>
+        <tr><td class="d">1027494062</td><td><strong>Anxiety in Order.</strong></td><td>None found.</td></tr>
+        <tr><td class="d">1463843436</td><td><strong>Therapeer.</strong></td><td>None found.</td></tr>
+        <tr><td class="d">509287014</td><td><strong>Rise Up + Recover.</strong></td><td>None confirmed.</td></tr>
+        <tr><td class="d">1475128511</td><td><strong>Bloom.</strong> Careful: several unrelated apps
+          are called Bloom, so a name search finds the wrong one.</td><td>None confirmed.</td></tr>
+        <tr><td class="d">974022309</td><td><strong>OFFTIME.</strong></td><td>None found.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Fourteen more IDs are confirmed dead by the same check but were recorded without a name I can
+        vouch for, so they are listed as numbers only rather than guessed at:
+        <code>1065632442</code>, <code>1293721589</code>, <code>1440060534</code>,
+        <code>1471316212</code>, <code>1472393066</code>, <code>1524433775</code>,
+        <code>1535250944</code>, <code>507357193</code>, <code>512241001</code>,
+        <code>538010611</code>, <code>6473211317</code>, <code>6475393761</code>,
+        <code>804271492</code>, <code>912632260</code>. If one of them is on your page, your own label
+        tells you what it was.</p>
+
+      <h3>And the opposite list: gone from the US store, alive elsewhere</h3>
+      <p>These are the ones a US-only sweep will wrongly delete. Each returns nothing in the US and
+        resolves normally in at least one other storefront:</p>
+      <ul>
+        <li><code>825099621</code> &mdash; <strong>Virtual Hope Box</strong>. Nothing in the US, live in
+          <strong>au</strong>. There is a current US listing under a different ID:
+          <code>6477622019</code>.</li>
+        <li><code>1469216793</code> &mdash; <strong>Stresscoach</strong> (formerly Pocketcoach). Not
+          available in the US at all; live in gb, de, at and ch.</li>
+        <li><code>1060691513</code> &mdash; <strong>Youper</strong>. Already withdrawn from every major
+          storefront, still resolving in <strong>ag</strong>. Separately, the service closes on
+          <strong>30 September 2026</strong>, and anyone journalling in it should export before then.</li>
+      </ul>
+      <p><strong>Why this list exists in this form.</strong> Every audit this page describes had to
+        rediscover the same handful of dead IDs from scratch. Publishing them turns each one into a
+        single grep for anybody else, and the crisis-related ones &mdash; MY3 above all &mdash; are the
+        entries least likely to be found any other way, because an app that quietly disappears generates
+        no announcement for anyone to notice.</p>
+
       <h2>Method, and its limits</h2>
       <ul>
         <li>Apple&rsquo;s public iTunes Search API, US storefront, 25 August 2026. Every name, publisher
