@@ -637,6 +637,66 @@ done</code></pre>
         result with that suffix, the ID you are linking is probably the dead one.</p>
     </section>
 
+    <section>
+      <h2>Step 10 &mdash; a dead ID and a wrong ID return the same zero</h2>
+
+      <p>Every step above leans on the same command. You take the numeric ID out of an App Store
+        link and ask Apple whether it still resolves:</p>
+
+      <pre><code>curl -s "https://itunes.apple.com/lookup?id=1305375832&amp;country=us"</code></pre>
+
+      <p>A <code>"resultCount": 0</code> looks like a verdict. It is not, and the reason is worth
+        sitting with, because it is the one hole in this whole method.</p>
+
+      <p><strong>Zero has two causes and they are indistinguishable.</strong> The app was withdrawn
+        &mdash; or you have the wrong ID. A typo, a digit dropped in a copy-paste, an ID you found in
+        a five-year-old blog post that was wrong when it was written. All of them return exactly the
+        same zero, from exactly the same command, with no error and nothing to tell them apart.</p>
+
+      <p>When you pull the ID out of the page you are auditing, this rarely bites: whatever that link
+        points at is the thing you are checking, right or wrong. It bites when you go looking for an
+        ID &mdash; when the page names an app without linking it, and you go and find a number for
+        it. Then the number is your claim, not theirs, and the zero you get back may be a fact about
+        your typing.</p>
+
+      <p>Here is the trap fully sprung. I looked up an ID I believed to be Youper&rsquo;s. Six
+        storefronts, six zeros:</p>
+
+      <pre><code>us 0   gb 0   ca 0   br 0   mx 0   in 0</code></pre>
+
+      <p>Damning. Also worthless. Because there is no listing left anywhere, there is nothing to
+        check the ID <em>against</em> &mdash; no <code>trackName</code> to compare, no publisher to
+        match. I could not prove I had ever held Youper&rsquo;s ID rather than a plausible-looking
+        wrong one, so I could not honestly use those zeros as evidence of anything, and I dropped
+        them.</p>
+
+      <p><strong>The rule: an ID is only evidence once something has confirmed it is the right
+        ID.</strong> A lookup that returns 1 proves its own ID &mdash; the name and publisher come
+        back with it. A lookup that returns 0 proves nothing on its own, because the one thing that
+        would have confirmed the ID is the listing that is missing.</p>
+
+      <p>So when the answer is zero, go and find a source that does not depend on the ID at all:</p>
+
+      <ul>
+        <li><strong>Search the store by name.</strong> A search for <code>youper</code> in the US
+          store returns four apps &mdash; Wysa, Woebot, stoic, Clarity &mdash; and none of them is
+          Youper. That is a statement about the store, with no ID in it.</li>
+        <li><strong>Read what the publisher says.</strong> The strongest source is almost always the
+          company&rsquo;s own site. youper.ai opens with a banner: <em>&ldquo;Youper is shutting down
+          September 30, 2026 &mdash; export your data&rdquo;</em>. Nothing you can infer from outside
+          beats the publisher saying it themselves.</li>
+        <li><strong>Check a control in the same run.</strong> Any ID you know to be live, queried
+          against the same storefronts at the same moment. If the control returns zero too, the
+          problem is your connection, not the app.</li>
+      </ul>
+
+      <p>None of this makes the lookup useless. It makes it a <em>prompt</em> rather than a
+        conclusion &mdash; the thing that tells you where to look, not the thing you quote. The
+        difference matters most when you are about to tell somebody their page is wrong. Being
+        right for a reason that does not hold is the same as being wrong, and it costs you the next
+        correction too.</p>
+    </section>
+
     <footer>
       <p><a href="./">Home</a> &middot;
         <a href="./cbt-apps-still-maintained.html">Which CBT apps still exist</a> &middot;
