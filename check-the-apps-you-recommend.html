@@ -119,6 +119,29 @@
           <code>resultCount:0</code> for an app that is demonstrably on sale. Re-run it before you
           write anything down.</li>
       </ul>
+
+      <h3>Step 1b &mdash; do the same on Android, because an app can die on one platform only</h3>
+      <p>This page checked Apple only for a long time, for the boring reason that Apple has a lookup
+        API and Google does not. That was a real gap, and here is the case that exposed it.</p>
+      <p>On a university counselling page listing four apps, <strong>Breathe2Relax</strong> was alive
+        on the App Store &mdash; current, published by the US Defense Health Agency &mdash; and its
+        Google Play page returned <strong>404</strong>. The iPhone link worked. The Android link did
+        not. On the same page, two other apps were gone from <em>both</em> stores, and only checking
+        both revealed which was which.</p>
+      <p>The split runs in the other direction too: on a school counselling page, an app&rsquo;s
+        Android listing had gone while its iPhone link still worked perfectly.</p>
+      <p>Neither is visible if you check on the phone you happen to be holding. And a page like yours
+        is almost always checked on one device, by one person, once.</p>
+      <p>There is no API, so fetch the page and read the status &mdash; with a control package, exactly
+        as you use a control ID on Apple:</p>
+      <pre><code>curl -sL -o /dev/null -w '%{http_code}\n' \
+  "https://play.google.com/store/apps/details?id=&lt;package&gt;"</code></pre>
+      <p><strong>The caveat, stated plainly, because this evidence is weaker than Apple&rsquo;s.</strong>
+        Google Play returns 404 for an app that is unavailable <em>in your region</em> as well as for
+        one that has been removed. So a Play 404 is a strong signal, not a proof, and it is not as
+        solid as <code>resultCount:0</code> across five Apple storefronts. Where it matters, say
+        &ldquo;the Android listing does not load from here&rdquo; rather than &ldquo;the Android app is
+        gone&rdquo;.</p>
     </section>
 
     <section class="card">
