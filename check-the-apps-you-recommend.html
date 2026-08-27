@@ -221,8 +221,25 @@
       </ul>
       <p>The check costs one flag. Ask curl what it actually reached:</p>
       <pre><code>curl -sL -o /dev/null -w '%{http_code}  %{url_effective}\n' "$URL"</code></pre>
-      <p>If <code>url_effective</code> is a bare domain and you asked for a path, treat it as a
-        failure whatever the code says.</p>
+      <p>If <code>url_effective</code> is a bare domain and you asked for a path, that is worth
+        investigating &mdash; but do not report it until you have opened it in a browser, because there
+        is one common case where it is completely wrong.</p>
+
+      <h4>The exception, added after it nearly caused a 61-link false positive</h4>
+      <p>Many library catalogues, repositories and databases route <strong>entirely on the client</strong>.
+        The permalink is real, but the page that resolves it is JavaScript: the server returns the
+        application shell, and the record is fetched afterwards. To <code>curl</code> this looks
+        identical to a deep link collapsing to a homepage.</p>
+      <p>Auditing a college library&rsquo;s health and wellbeing guide, every one of its
+        <strong>61 catalogue permalinks appeared to drop to the catalogue root</strong>. By the rule
+        above, that is 61 broken links and an alarming email to a librarian. Opened in a browser, the
+        first one resolved instantly to the right record &mdash; a different URL again, carrying the
+        document id. Nothing was broken. Nothing had ever been broken.</p>
+      <p>So the rule needs its exception stated plainly: <strong>a drop to the root is a signal to look,
+        not a finding.</strong> If it happens to <em>one</em> link on a page, it is probably real. If it
+        happens to <em>every</em> link that shares a host, you have found a single-page application, not
+        sixty-one faults &mdash; and the fastest way to tell the difference is to open one of them
+        yourself.</p>
 
       <h3>Two smaller ones, from the same sweeps</h3>
       <ul>
