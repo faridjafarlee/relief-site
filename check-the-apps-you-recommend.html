@@ -697,6 +697,91 @@ done</code></pre>
         correction too.</p>
     </section>
 
+    <section>
+      <h2>Step 11 &mdash; a broken link announces itself; a name does not</h2>
+
+      <p>Every step so far assumes the failure is visible. A link 404s. A lookup returns zero. Somebody
+        taps a thing and nothing happens, and at least they know something is wrong.</p>
+
+      <p>This step is about the failure that stays quiet.</p>
+
+      <p>Plenty of resource lists name apps without linking them &mdash; printed handouts, PDFs, pages
+        written before anyone thought a store link would rot. A name is not a dead end. It is a
+        <em>search query you have handed the reader</em>, and app-store names are not reserved. When an
+        app leaves, its name does not leave with it.</p>
+
+      <p>So the reader searches, finds something with that name, and installs it. Nothing failed. There
+        was no error to notice.</p>
+
+      <h3>What the searches actually return</h3>
+
+      <p>These are US App Store searches run on 27 August 2026, for names that appear on real
+        institutional lists I have audited:</p>
+
+      <p><strong>&ldquo;Pacifica&rdquo;</strong> &mdash; the name Sanvello used before its rebrand, and
+        still the name on more than one college handout. The store returns:</p>
+
+      <pre><code>Pacifica Christian OC        Pacifica Christian High School
+Mes Assurances               Pacifica            (a French insurer)
+Pac&iacute;fica                    ADM, Agencia de Difusion M&hellip;</code></pre>
+
+      <p>A high school app, an insurance app, and a Spanish-language media app. Not one result is a
+        mental-health tool of any kind.</p>
+
+      <p><strong>&ldquo;Relax Melodies&rdquo;</strong> &mdash; the sharpest case, because both halves go
+        wrong at once:</p>
+
+      <pre><code>BetterSleep: Relax and Sleep      BetterSleep Health, LLC     id 314498713
+Relax Melodies - Sleep Sounds    &#27719;&#26477; &#38047;                     id 1569331495</code></pre>
+
+      <p>The app the list meant is the first one &mdash; same ID as the original link, renamed to
+        <em>BetterSleep</em>. The second carries the name the reader is searching for and belongs to a
+        different publisher entirely. <strong>The name leads away from the app; the app survives only
+        under a name the list does not have.</strong></p>
+
+      <p><strong>&ldquo;Panic Relief&rdquo;</strong> &mdash; the original, credited on one handout to a
+        named psychiatrist, is gone. A different developer now publishes <em>Panic Relief: Anxiety
+        &amp; Calm</em>. <strong>&ldquo;MoodTools&rdquo;</strong> returns the real one alongside a
+        separate <em>The Mood Tools</em> from an unrelated foundation.</p>
+
+      <h3>And the cases where nothing goes wrong</h3>
+
+      <p>This is not a universal law, and treating it as one would just be a new way to be wrong.
+        Searching <strong>&ldquo;Sanvello&rdquo;</strong> surfaces no impostor &mdash; the name is
+        simply vacant. Searching <strong>&ldquo;Woebot&rdquo;</strong> returns Woebot, correctly.
+        Searching <strong>&ldquo;Virtual Hope Box&rdquo;</strong> returns the Defense Health Agency&rsquo;s
+        republished version, which is exactly what you want to happen.</p>
+
+      <p>So the collision is common enough to check for every time and not common enough to assume.
+        <strong>Check; do not predict.</strong></p>
+
+      <h3>The check</h3>
+
+      <p>Whenever an entry turns out to be dead, renamed, or unlinked, do one more thing before you
+        write to anyone: <strong>search the name and read the publisher of what comes back.</strong>
+        Not the name &mdash; the publisher. The name is the part that has already failed you.</p>
+
+      <pre><code>curl -s "https://itunes.apple.com/search?term=pacifica&amp;country=us&amp;entity=software&amp;limit=5"</code></pre>
+
+      <p>Then ask the question that actually matters: <em>if a reader typed this name in, what would
+        they install?</em></p>
+
+      <h3>A footnote worth more than the step</h3>
+
+      <p>One of the documents I audited &mdash; a county mental-health board&rsquo;s app list &mdash;
+        opens with this line:</p>
+
+      <blockquote>
+        <p>&ldquo;Apps may share similar titles; the publisher is given here to distinguish from
+          similarly-named apps.&rdquo;</p>
+      </blockquote>
+
+      <p>They had worked it out already, and built the defence into the document&rsquo;s structure before
+        I arrived to explain the problem. It is a good reminder that the people maintaining these lists
+        are often thinking harder than the state of their links suggests &mdash; and that the useful
+        thing to send them is evidence, not a lecture.</p>
+    </section>
+
     <footer>
       <p><a href="./">Home</a> &middot;
         <a href="./cbt-apps-still-maintained.html">Which CBT apps still exist</a> &middot;
