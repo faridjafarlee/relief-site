@@ -560,6 +560,37 @@ https://happify.dariomind.com/?access_code=happify</code></pre>
         those do &mdash; whether the door is open to your reader specifically.</p>
     </section>
 
+    <section>
+      <h2>The failure mode that costs more than a wasted afternoon</h2>
+      <p>Everything above assumes the worst outcome of a bad check is wasted effort. There is one
+        case where it is worse than that, and it took me a while to meet it.</p>
+      <p>Search results are not evidence. I have now had eleven separate occasions where a search
+        summary confidently described content that the page did not contain &mdash; across four
+        countries and three top-level domains, so it is a property of indexes, not of any one site.
+        Usually the cost is one wasted fetch.</p>
+      <p>Then this happened. Hunting for pages listing gambling-recovery apps, a result came back
+        titled &ldquo;Gambling Help &amp; Support Resources &mdash; Ireland&rdquo;, hosted at a path
+        under a nail-salon domain. That is exactly the shape of a hijacked or repurposed site, and I
+        had just spent five days documenting a real case of precisely that. Every prior of mine said
+        I had found another one.</p>
+      <p>The page does not exist. The URL redirects to the site root, which is a nail salon &mdash;
+        a real business, with a services list and an about page and no gambling content of any kind
+        anywhere on it.</p>
+      <pre><code>$ curl -sL -w "%{http_code}\n" https://rdsnailsandbeauty.org/ie/gambling-help/
+301 &rarr; the homepage
+$ grep -ic "casino\|betting\|gamstop" &lt;the fetched page&gt;
+0</code></pre>
+      <p>Had I trusted the snippet, the next step in my own process would have been to find a contact
+        address and write to them about the gambling content on their site. To a nail salon. That is
+        not a wasted email; <strong>that is an accusation, made to a real business, about something
+        they did not do.</strong></p>
+      <p>So the rule has a sharper edge than &ldquo;fetch before you conclude&rdquo;. It is this:
+        <strong>the more damning a search result looks, the more it is costing you to believe it
+        early.</strong> A snippet that says a page is boring will waste your time if it is wrong. A
+        snippet that says a page is doing something wrong will spend your credibility, and somebody
+        else's, if it is wrong. Fetch the page. Read what is actually on it. Then write.</p>
+    </section>
+
     <footer>
       <p><a href="./">Home</a> &middot;
         <a href="./cbt-apps-still-maintained.html">Which CBT apps still exist</a> &middot;
