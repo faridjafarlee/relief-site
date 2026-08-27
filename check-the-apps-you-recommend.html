@@ -375,6 +375,42 @@
         would rather fix it than be quoted saying something wrong.</p>
     </section>
 
+    <section class="card">
+      <h2>Step 6 &mdash; check what the <em>directory</em> you link to is selling now</h2>
+      <p>Every step so far has been about apps. This one is about the intermediaries: the curated app
+        libraries that resource pages link to instead of listing apps themselves. They look like the
+        safe option &mdash; somebody else does the vetting, and the link points at an organisation
+        rather than at a store listing that might vanish. That is exactly why nobody re-checks them.</p>
+      <p>Here is what I found on one, on 27 August 2026.</p>
+      <p><strong><code>my-therappy.co.uk</code></strong> is a UK app library for stroke, brain-injury
+        and speech-and-language rehabilitation. It presents itself as clinician-assessed &mdash; its
+        app pages carry a &ldquo;Clinician Rating&rdquo;, and the site describes testing by a network
+        of NHS clinicians. The library is intact and still working: two dozen app pages, real
+        write-ups, the aphasia and speech-therapy apps you would expect to find.</p>
+      <p>The site also now carries <strong>gambling affiliate sections</strong>. Its navigation links
+        to pages titled <em>Non UK Casinos</em>, <em>Non GamStop Casinos</em> and <em>Betting Sites
+        Not on GamStop</em>, and its homepage carries a run of casino offers behind &ldquo;Get
+        Bonus!&rdquo; links on internal <code>/visit/&hellip;</code> redirect paths. That navigation
+        appears on the app pages too, alongside the clinician ratings.</p>
+      <p>I am describing what the pages contain, not who put it there or why. A domain can change
+        hands; a section can be added by an operator who needs revenue; none of that is knowable from
+        outside. What <em>is</em> knowable is what a reader arriving from your page sees.</p>
+      <p><strong>Why this is worse than a dead link.</strong> GamStop is the United Kingdom&rsquo;s
+        gambling self-exclusion scheme: someone who wants to stop registers once and is blocked across
+        licensed operators. &ldquo;Not on GamStop&rdquo; is a category defined by that block not
+        applying. The audience routed to a site like this through rehabilitation resource pages
+        includes people recovering from stroke and brain injury &mdash; a population in which changes
+        to impulse control are a recognised clinical consequence.</p>
+      <p>A dead link fails visibly and wastes somebody&rsquo;s time. This one works perfectly.</p>
+      <h3>What to actually do</h3>
+      <p>Fetch the directories you link to, not only the apps, and read what is on them now &mdash;
+        including the navigation, which is where this appeared rather than in the body text:</p>
+      <pre><code>curl -sL "https://example.org/" | grep -oiE '&gt;[^&lt;]{0,40}(casino|betting|gambling|bonus)[^&lt;]{0,40}&lt;'</code></pre>
+      <p>That grep is deliberately narrow, and the general version is simply to open the page. The
+        point is not this keyword set. It is that <strong>an intermediary is a page like any other, and
+        the reason it feels safe to link is the same reason nobody looks at it twice.</strong></p>
+    </section>
+
     <footer>
       <p><a href="./">Home</a> &middot;
         <a href="./cbt-apps-still-maintained.html">Which CBT apps still exist</a> &middot;
