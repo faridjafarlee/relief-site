@@ -389,9 +389,26 @@
         write-ups, the aphasia and speech-therapy apps you would expect to find.</p>
       <p>The site also now carries <strong>gambling affiliate sections</strong>. Its navigation links
         to pages titled <em>Non UK Casinos</em>, <em>Non GamStop Casinos</em> and <em>Betting Sites
-        Not on GamStop</em>, and its homepage carries a run of casino offers behind &ldquo;Get
-        Bonus!&rdquo; links on internal <code>/visit/&hellip;</code> redirect paths. That navigation
-        appears on the app pages too, alongside the clinician ratings.</p>
+        Not on GamStop</em>, and that navigation appears on the app pages too, alongside the clinician
+        ratings.</p>
+      <p><strong>And the front door is gone.</strong> Requesting the site root does not return a
+        homepage at all &mdash; it issues a redirect to the casino page:</p>
+      <pre><code>$ curl -sIL "https://www.my-therappy.co.uk/"
+HTTP/2 301
+location: https://www.my-therappy.co.uk/non-uk-casinos
+HTTP/2 200</code></pre>
+      <p>Every form goes the same way &mdash; with <code>www</code> or without, over
+        <code>http</code> or <code>https</code>, with a trailing slash or without. The app library is
+        still there at its deeper paths, so a link to a specific app or condition page still lands
+        where it should. But <strong>anyone who linked the site itself &mdash; which is how most
+        resource pages link a directory &mdash; is now sending readers straight to a page of casino
+        offers.</strong></p>
+      <p>A link checker sees <code>200</code> and moves on. So did I, at first: I fetched the root
+        with redirects followed, saw casino promotions, and wrote it up as &ldquo;the homepage carries
+        gambling adverts.&rdquo; It does not carry them. <strong>It <em>is</em> them</strong> &mdash;
+        and I only found that out by printing the redirect chain instead of the final page. If you
+        take one habit from this section, make it <code>-I</code> and <code>-L</code> together:
+        <em>where a link ends up is a different question from what it returns.</em></p>
       <p>I am describing what the pages contain, not who put it there or why. A domain can change
         hands; a section can be added by an operator who needs revenue; none of that is knowable from
         outside. What <em>is</em> knowable is what a reader arriving from your page sees.</p>
