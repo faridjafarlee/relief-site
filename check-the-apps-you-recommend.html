@@ -591,6 +591,52 @@ $ grep -ic "casino\|betting\|gamstop" &lt;the fetched page&gt;
         else's, if it is wrong. Fetch the page. Read what is actually on it. Then write.</p>
     </section>
 
+    <section>
+      <h2>Step 9 &mdash; the link names a storefront, and it may not be your reader&rsquo;s</h2>
+      <p>Every App Store URL contains a two-letter country code you probably never look at:</p>
+      <pre><code>https://apps.apple.com/<strong>au</strong>/app/virtual-hope-box/id825099621
+                        &uarr;
+             this is a storefront, not decoration</code></pre>
+      <p>Apple runs a separate storefront per country, and an app can be present in one and absent
+        from another. So a link can be simultaneously working and useless: it returns a page, because
+        the storefront it names still has the listing, while the storefront your readers actually
+        shop in does not.</p>
+
+      <h3>How I met it</h3>
+      <p>A university counselling centre in New York State lists that exact URL under the heading
+        <em>Suicide prevention</em>. Checking the ID one storefront at a time, against a control app
+        queried in the same run:</p>
+      <pre><code>id 825099621    au: 1    us: 0    gb: 0    ca: 0    ag: 0
+control         au: 1    us: 1    gb: 1    ca: 1    ag: 1</code></pre>
+      <p>The listing survives in Australia alone &mdash; which happens to be the single storefront
+        the link names &mdash; and nowhere the students reading that page live. A link checker sees
+        a healthy 200. So does a human who clicks it from the wrong country and gets redirected to a
+        &ldquo;not available&rdquo; page they assume is a temporary glitch.</p>
+      <p>The app itself is perfectly fine. Its publisher, the Defense Health Agency, republished it
+        under a new ID and a new title: <strong>Virtual Hope Box (new)</strong>, id
+        <code>6477622019</code>. On Google Play the original package still resolves, so Android
+        readers were never affected. I have since found the same retired ID on a second US
+        university page, so it is not one librarian&rsquo;s slip.</p>
+
+      <h3>What to actually do</h3>
+      <p>Two things, both cheap.</p>
+      <p><strong>Read the country code in every store URL you publish.</strong> If your readers are
+        in one country and the link says something else, fix it even when the link works &mdash;
+        <code>/us/</code> for a US audience, <code>/gb/</code> for a UK one. A link that happens to
+        work today because it points at Australia is working by accident.</p>
+      <p><strong>Check the ID per storefront, not once.</strong> One lookup tells you an app exists
+        somewhere. Your readers do not live in <em>somewhere</em>:</p>
+      <pre><code>for cc in us gb ca au; do
+  printf "%s: " "$cc"
+  curl -s "https://itunes.apple.com/lookup?id=825099621&amp;country=$cc" \
+    | python3 -c "import sys,json; print(json.load(sys.stdin)['resultCount'])"
+done</code></pre>
+      <p>And the tell from earlier in this guide applies here too: when a publisher retires an ID and
+        starts again, the new listing very often carries <strong>&ldquo;(new)&rdquo;</strong> in its
+        title, because the old name is still taken. If a search for the app you meant turns up a
+        result with that suffix, the ID you are linking is probably the dead one.</p>
+    </section>
+
     <footer>
       <p><a href="./">Home</a> &middot;
         <a href="./cbt-apps-still-maintained.html">Which CBT apps still exist</a> &middot;
