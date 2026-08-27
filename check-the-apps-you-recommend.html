@@ -138,9 +138,23 @@
       <h2>Step 3 &mdash; find every page that links a dead app</h2>
       <p>Once you know an ID is dead, search for the ID itself, in quotes, in any search engine:</p>
       <pre><code>"id825099621"</code></pre>
-      <p>This works far better than searching the app&rsquo;s name, and it has no false positives by
-        construction, because nobody writes an App Store ID anywhere except inside a link. One such
-        search returned five separate institutions still linking the same withdrawn app.</p>
+      <p>This works far better than searching the app&rsquo;s name, because nobody writes an App Store
+        ID anywhere except inside a link. One such search returned five separate institutions still
+        linking the same withdrawn app.</p>
+      <p><strong>A correction to what this page said before.</strong> It used to claim the search has
+        &ldquo;no false positives by construction&rdquo;. That is wrong, and the reason is worth
+        knowing.</p>
+      <p>The construction argument only holds if the index is <em>current</em>. It is often not. A
+        search on one dead ID returned three institutional pages; <strong>none of the three actually
+        contained it</strong> &mdash; one was unreadable, and the two that fetched cleanly had zero
+        occurrences. The index was describing pages by content they had already removed. That has now
+        happened six separate times during this work, on six unrelated queries.</p>
+      <p>So the rule is: <strong>treat every hit as a candidate to fetch, never as a confirmed
+        carrier.</strong> Open the page and search it yourself before you write to anybody. The search
+        is still the best way to find candidates &mdash; it just does not certify them.</p>
+      <p class="cue">The useful side-effect of the index lagging: some of those pages had already been
+        fixed. That is worth knowing before you send a correction for something somebody dealt with
+        last month.</p>
       <p class="cue">If you run a large site, this is also the fastest way to audit yourself: add
         <code>site:yourdomain.edu</code> to the same query.</p>
     </section>
