@@ -428,6 +428,72 @@ HTTP/2 200</code></pre>
         the reason it feels safe to link is the same reason nobody looks at it twice.</strong></p>
     </section>
 
+    <section>
+      <h2>Step 7 &mdash; the address on the contact page is a claim too</h2>
+      <p>Every step above ends the same way: you found something worth telling somebody, so you write
+        to the address the site publishes. That address is the last unchecked assumption in the whole
+        method, and I only noticed because two of mine bounced on the same night.</p>
+      <p>Both were <em>published</em> addresses. Neither was guessed. I have a standing rule against
+        inventing a local part &mdash; <code>info@</code>, <code>hello@</code>, a name pattern copied
+        from another site &mdash; because the local part is part of the identifier, and a guess that
+        happens to land is worse than one that bounces. So I take the address off the site. That rule
+        held. It just protects against the wrong failure.</p>
+
+      <h3>The first one: the address is fine, the mailbox is gone</h3>
+      <p>A Spanish site reviewing AI mental-health chatbots publishes one address on four separate
+        pages, twice as a live <code>mailto:</code> link, next to the sentence that it tries to answer
+        every message within 72 working hours. The domain runs its own mail server. The mail server
+        answered:</p>
+      <pre><code>550 Unrouteable address</code></pre>
+      <p>There is no contact form anywhere on the site &mdash; I checked every page that could carry
+        one, and the HTML contains no <code>&lt;form&gt;</code> element at all. So a site that invites
+        editorial corrections, and promises a response time for them, currently has no channel that
+        reaches a human. Nothing on the page says so. It reads exactly like a site you can write to.</p>
+
+      <h3>The second one: the dead address is on the page that exists to catch the dead ends</h3>
+      <p>A Brazilian startup publication publishes a contact address on <code>/contato/</code>, on
+        <code>/expediente/</code>, and on its own 404 page &mdash; the page that asks you to write in
+        when something on the site is broken. That address returned:</p>
+      <pre><code>the email account that you tried to reach does not exist</code></pre>
+      <p>And the two contact pages are themselves gone. <code>/contato/</code> and
+        <code>/expediente/</code> both return <strong>404</strong>, serving byte-for-byte the same
+        page as a URL I invented to test it:</p>
+      <pre><code>$ curl -sL -o /dev/null -w "%{http_code}\n" https://www.projetodraft.com/contato/
+404
+$ curl -sL -o /dev/null -w "%{http_code}\n" https://www.projetodraft.com/naoexiste-teste-404/
+404</code></pre>
+      <p>That is the whole failure in one shape: <strong>the escape hatch for broken things is itself
+        the broken thing</strong>, and it is advertised on the page whose only job is to catch people
+        when something breaks.</p>
+
+      <h3>What an MX record does and does not prove</h3>
+      <p>Both domains have working mail. The Spanish one runs its own server; the Brazilian one is on
+        Google Workspace. A DNS check tells you the domain accepts mail. It tells you nothing about
+        whether <em>that mailbox</em> exists, which is the only question you actually have:</p>
+      <pre><code>dig +short MX example.com</code></pre>
+      <p>So the check is worth thirty seconds as a negative signal &mdash; no MX at all means stop
+        &mdash; and it is worthless as a positive one.</p>
+
+      <h3>What to actually do</h3>
+      <p>Two things, and the second is the one that recovers the contact.</p>
+      <p><strong>Treat the bounce as data, not as an ending.</strong> A bounce is the only evidence
+        that separates a published address from a working one, which makes it the most informative
+        reply you can get. Read the server's actual words: <code>550 Unrouteable</code> and
+        <code>account does not exist</code> both mean the mailbox is gone, and neither means the
+        organisation is.</p>
+      <p><strong>When it bounces, go find another <em>published</em> address &mdash; do not start
+        guessing.</strong> The temptation after a bounce is to try the obvious variants, and that is
+        precisely the moment the rule matters most. On the Brazilian site, the page that still returns
+        <strong>200</strong> is <code>/quem-somos/</code>, and it lists two named editors with their
+        own addresses and an explicit invitation to write to them. The contact route was never
+        missing. It had just moved off the page called &ldquo;contact&rdquo; and onto the page called
+        &ldquo;who we are&rdquo;, and the site never updated the first to say so.</p>
+      <p>Which is the same lesson as Step 1, pointed at yourself. A name in a list is a claim about an
+        app, and only the lookup settles it. An address on a contact page is a claim about a mailbox,
+        and <strong>only a delivery attempt settles that.</strong> If you are going to hold other
+        people's pages to that standard, the address you write to belongs inside it.</p>
+    </section>
+
     <footer>
       <p><a href="./">Home</a> &middot;
         <a href="./cbt-apps-still-maintained.html">Which CBT apps still exist</a> &middot;
